@@ -81,17 +81,121 @@ CMakeFiles/server.dir/main.cpp.o.provides: CMakeFiles/server.dir/main.cpp.o.requ
 CMakeFiles/server.dir/main.cpp.o.provides.build: CMakeFiles/server.dir/main.cpp.o
 
 
+CMakeFiles/server.dir/src/Server.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Server.cpp.o: ../src/Server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/Server.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Server.cpp.o -c "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.cpp"
+
+CMakeFiles/server.dir/src/Server.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Server.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.cpp" > CMakeFiles/server.dir/src/Server.cpp.i
+
+CMakeFiles/server.dir/src/Server.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Server.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.cpp" -o CMakeFiles/server.dir/src/Server.cpp.s
+
+CMakeFiles/server.dir/src/Server.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/src/Server.cpp.o.requires
+
+CMakeFiles/server.dir/src/Server.cpp.o.provides: CMakeFiles/server.dir/src/Server.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Server.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/src/Server.cpp.o.provides
+
+CMakeFiles/server.dir/src/Server.cpp.o.provides.build: CMakeFiles/server.dir/src/Server.cpp.o
+
+
+CMakeFiles/server.dir/src/Room.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Room.cpp.o: ../src/Room.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/Room.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Room.cpp.o -c "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Room.cpp"
+
+CMakeFiles/server.dir/src/Room.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Room.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Room.cpp" > CMakeFiles/server.dir/src/Room.cpp.i
+
+CMakeFiles/server.dir/src/Room.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Room.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Room.cpp" -o CMakeFiles/server.dir/src/Room.cpp.s
+
+CMakeFiles/server.dir/src/Room.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/src/Room.cpp.o.requires
+
+CMakeFiles/server.dir/src/Room.cpp.o.provides: CMakeFiles/server.dir/src/Room.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Room.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/src/Room.cpp.o.provides
+
+CMakeFiles/server.dir/src/Room.cpp.o.provides.build: CMakeFiles/server.dir/src/Room.cpp.o
+
+
+CMakeFiles/server.dir/src/Game.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Game.cpp.o: ../src/Game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/Game.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Game.cpp.o -c "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Game.cpp"
+
+CMakeFiles/server.dir/src/Game.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Game.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Game.cpp" > CMakeFiles/server.dir/src/Game.cpp.i
+
+CMakeFiles/server.dir/src/Game.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Game.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Game.cpp" -o CMakeFiles/server.dir/src/Game.cpp.s
+
+CMakeFiles/server.dir/src/Game.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/src/Game.cpp.o.requires
+
+CMakeFiles/server.dir/src/Game.cpp.o.provides: CMakeFiles/server.dir/src/Game.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Game.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/src/Game.cpp.o.provides
+
+CMakeFiles/server.dir/src/Game.cpp.o.provides.build: CMakeFiles/server.dir/src/Game.cpp.o
+
+
+CMakeFiles/server.dir/src/Player.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Player.cpp.o: ../src/Player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/Player.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Player.cpp.o -c "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Player.cpp"
+
+CMakeFiles/server.dir/src/Player.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Player.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Player.cpp" > CMakeFiles/server.dir/src/Player.cpp.i
+
+CMakeFiles/server.dir/src/Player.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Player.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Player.cpp" -o CMakeFiles/server.dir/src/Player.cpp.s
+
+CMakeFiles/server.dir/src/Player.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/src/Player.cpp.o.requires
+
+CMakeFiles/server.dir/src/Player.cpp.o.provides: CMakeFiles/server.dir/src/Player.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Player.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/src/Player.cpp.o.provides
+
+CMakeFiles/server.dir/src/Player.cpp.o.provides.build: CMakeFiles/server.dir/src/Player.cpp.o
+
+
 # Object files for target server
 server_OBJECTS = \
-"CMakeFiles/server.dir/main.cpp.o"
+"CMakeFiles/server.dir/main.cpp.o" \
+"CMakeFiles/server.dir/src/Server.cpp.o" \
+"CMakeFiles/server.dir/src/Room.cpp.o" \
+"CMakeFiles/server.dir/src/Game.cpp.o" \
+"CMakeFiles/server.dir/src/Player.cpp.o"
 
 # External object files for target server
 server_EXTERNAL_OBJECTS =
 
 server: CMakeFiles/server.dir/main.cpp.o
+server: CMakeFiles/server.dir/src/Server.cpp.o
+server: CMakeFiles/server.dir/src/Room.cpp.o
+server: CMakeFiles/server.dir/src/Game.cpp.o
+server: CMakeFiles/server.dir/src/Player.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -100,6 +204,10 @@ CMakeFiles/server.dir/build: server
 .PHONY : CMakeFiles/server.dir/build
 
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/main.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Server.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Room.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Game.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Player.cpp.o.requires
 
 .PHONY : CMakeFiles/server.dir/requires
 

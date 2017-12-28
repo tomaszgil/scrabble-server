@@ -150,6 +150,114 @@ main.cpp.s:
 	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/main.cpp.s
 .PHONY : main.cpp.s
 
+src/Game.o: src/Game.cpp.o
+
+.PHONY : src/Game.o
+
+# target to build an object file
+src/Game.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Game.cpp.o
+.PHONY : src/Game.cpp.o
+
+src/Game.i: src/Game.cpp.i
+
+.PHONY : src/Game.i
+
+# target to preprocess a source file
+src/Game.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Game.cpp.i
+.PHONY : src/Game.cpp.i
+
+src/Game.s: src/Game.cpp.s
+
+.PHONY : src/Game.s
+
+# target to generate assembly for a file
+src/Game.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Game.cpp.s
+.PHONY : src/Game.cpp.s
+
+src/Player.o: src/Player.cpp.o
+
+.PHONY : src/Player.o
+
+# target to build an object file
+src/Player.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Player.cpp.o
+.PHONY : src/Player.cpp.o
+
+src/Player.i: src/Player.cpp.i
+
+.PHONY : src/Player.i
+
+# target to preprocess a source file
+src/Player.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Player.cpp.i
+.PHONY : src/Player.cpp.i
+
+src/Player.s: src/Player.cpp.s
+
+.PHONY : src/Player.s
+
+# target to generate assembly for a file
+src/Player.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Player.cpp.s
+.PHONY : src/Player.cpp.s
+
+src/Room.o: src/Room.cpp.o
+
+.PHONY : src/Room.o
+
+# target to build an object file
+src/Room.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Room.cpp.o
+.PHONY : src/Room.cpp.o
+
+src/Room.i: src/Room.cpp.i
+
+.PHONY : src/Room.i
+
+# target to preprocess a source file
+src/Room.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Room.cpp.i
+.PHONY : src/Room.cpp.i
+
+src/Room.s: src/Room.cpp.s
+
+.PHONY : src/Room.s
+
+# target to generate assembly for a file
+src/Room.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Room.cpp.s
+.PHONY : src/Room.cpp.s
+
+src/Server.o: src/Server.cpp.o
+
+.PHONY : src/Server.o
+
+# target to build an object file
+src/Server.cpp.o:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Server.cpp.o
+.PHONY : src/Server.cpp.o
+
+src/Server.i: src/Server.cpp.i
+
+.PHONY : src/Server.i
+
+# target to preprocess a source file
+src/Server.cpp.i:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Server.cpp.i
+.PHONY : src/Server.cpp.i
+
+src/Server.s: src/Server.cpp.s
+
+.PHONY : src/Server.s
+
+# target to generate assembly for a file
+src/Server.cpp.s:
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Server.cpp.s
+.PHONY : src/Server.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -162,6 +270,18 @@ help:
 	@echo "... main.o"
 	@echo "... main.i"
 	@echo "... main.s"
+	@echo "... src/Game.o"
+	@echo "... src/Game.i"
+	@echo "... src/Game.s"
+	@echo "... src/Player.o"
+	@echo "... src/Player.i"
+	@echo "... src/Player.s"
+	@echo "... src/Room.o"
+	@echo "... src/Room.i"
+	@echo "... src/Room.s"
+	@echo "... src/Server.o"
+	@echo "... src/Server.i"
+	@echo "... src/Server.s"
 .PHONY : help
 
 

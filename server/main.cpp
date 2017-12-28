@@ -1,6 +1,9 @@
-#include <iostream>
+#include "src/Server.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+
+    Server s = Server();
+    s.run();
+
     return 0;
 }

@@ -5,6 +5,10 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
   "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/main.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/main.cpp.o"
+  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Game.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Game.cpp.o"
+  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Player.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Player.cpp.o"
+  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Room.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Room.cpp.o"
+  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Server.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

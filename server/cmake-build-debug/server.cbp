@@ -87,6 +87,30 @@
 		<Unit filename="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/main.cpp">
 			<Option target="server"/>
 		</Unit>
+		<Unit filename="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Game.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Game.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Player.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Player.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Room.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Room.h">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.cpp">
+			<Option target="server"/>
+		</Unit>
+		<Unit filename="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.h">
+			<Option target="server"/>
+		</Unit>
 		<Unit filename="/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
