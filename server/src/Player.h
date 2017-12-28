@@ -15,7 +15,7 @@ class Player {
     socklen_t player_struct_size;
 
 public:
-    Player(struct sockaddr_in, socklen_t);
+    Player(struct sockaddr_in player, socklen_t player_size);
 
 };
 

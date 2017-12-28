@@ -11,7 +11,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <iostream>
-
+#include <sys/fcntl.h>
 
 class Server {
 
