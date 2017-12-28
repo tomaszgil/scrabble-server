@@ -6,33 +6,65 @@
 
 #IncludeRegexTransform: 
 
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/main.cpp
+/Users/kamil/Projects/scrabble-online/server/main.cpp
 src/Server.h
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.h
+/Users/kamil/Projects/scrabble-online/server/src/Server.h
 
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Game.cpp
+/Users/kamil/Projects/scrabble-online/server/src/Game.cpp
 Game.h
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Game.h
+/Users/kamil/Projects/scrabble-online/server/src/Game.h
 
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Game.h
+/Users/kamil/Projects/scrabble-online/server/src/Game.h
 
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Player.cpp
+/Users/kamil/Projects/scrabble-online/server/src/Player.cpp
 Player.h
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Player.h
+/Users/kamil/Projects/scrabble-online/server/src/Player.h
 
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Player.h
-
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Room.cpp
-Room.h
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Room.h
-
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Room.h
-
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.cpp
+/Users/kamil/Projects/scrabble-online/server/src/Player.h
+cstdio
+-
+sys/socket.h
+-
+netinet/in.h
+-
+cstdlib
+-
+unistd.h
+-
+arpa/inet.h
+-
 iostream
 -
-Server.h
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.h
 
-/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.h
+/Users/kamil/Projects/scrabble-online/server/src/Room.cpp
+Room.h
+/Users/kamil/Projects/scrabble-online/server/src/Room.h
+
+/Users/kamil/Projects/scrabble-online/server/src/Room.h
+
+/Users/kamil/Projects/scrabble-online/server/src/Server.cpp
+Server.h
+/Users/kamil/Projects/scrabble-online/server/src/Server.h
+
+/Users/kamil/Projects/scrabble-online/server/src/Server.h
+vector
+-
+Player.h
+/Users/kamil/Projects/scrabble-online/server/src/Player.h
+Room.h
+/Users/kamil/Projects/scrabble-online/server/src/Room.h
+cstdio
+-
+sys/socket.h
+-
+netinet/in.h
+-
+cstdlib
+-
+unistd.h
+-
+arpa/inet.h
+-
+iostream
+-
 

@@ -4,13 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/main.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/main.cpp.o"
-  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Game.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Game.cpp.o"
-  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Player.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Player.cpp.o"
-  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Room.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Room.cpp.o"
-  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/src/Server.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Server.cpp.o"
+  "/Users/kamil/Projects/scrabble-online/server/main.cpp" "/Users/kamil/Projects/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/main.cpp.o"
+  "/Users/kamil/Projects/scrabble-online/server/src/Game.cpp" "/Users/kamil/Projects/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Game.cpp.o"
+  "/Users/kamil/Projects/scrabble-online/server/src/Player.cpp" "/Users/kamil/Projects/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Player.cpp.o"
+  "/Users/kamil/Projects/scrabble-online/server/src/Room.cpp" "/Users/kamil/Projects/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Room.cpp.o"
+  "/Users/kamil/Projects/scrabble-online/server/src/Server.cpp" "/Users/kamil/Projects/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir/src/Server.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "GNU")
+set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
