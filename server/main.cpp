@@ -2,8 +2,8 @@
 
 int main() {
 
-    Server s = Server();
-    s.run();
+    auto * s = new Server();
+    s -> run();
 
     return 0;
 }
