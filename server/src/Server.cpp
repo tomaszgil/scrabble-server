@@ -1,4 +1,3 @@
-
 #include "Server.h"
 
 Server::Server() {
@@ -32,7 +31,7 @@ void Server::bindSocket() {
         perror("Socket bind failed");
         exit(EXIT_FAILURE);
     }
-    std::cout << "Socket bounded" << std::endl;
+    std::cout << "Socket bound" << std::endl;
 }
 
 void Server::listenForConnections() {
@@ -44,10 +43,23 @@ void Server::listenForConnections() {
 }
 
 void Server::acceptConnection() {
-    struct sockaddr_in player_tmp;
+    struct sockaddr_in player_tmp{};
     socklen_t player_tmp_size;
-    while(int client_desc = accept(this->socket_desc, (struct sockaddr*)&player_tmp, &player_tmp_size) > 0){
-        std::cout << "Connection with client: " << inet_ntoa(player_tmp.sin_addr) << std::endl;
+    int client_desc = 0;
+    while((client_desc = accept(this->socket_desc, (struct sockaddr*)&player_tmp, &player_tmp_size))> 0){
+       // std::cout << "Connection with client: " << inet_ntoa(player_tmp.sin_addr) << std::endl;
+
         players.emplace_back(player_tmp, player_tmp_size);
+
+        char buffor[50];
+        if(read(client_desc, buffor, sizeof(buffor)) < 0){
+            perror("ERROR");
+            printf("%d", errno);
+        };
+        std:: cout << buffor << std::endl;
     }
 }
+
+
+
+

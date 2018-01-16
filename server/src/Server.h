@@ -12,6 +12,7 @@
 #include <arpa/inet.h>
 #include <iostream>
 #include <sys/fcntl.h>
+#include <string>
 
 class Server {
 
@@ -30,7 +31,6 @@ public:
     void listenForConnections();
     void acceptConnection();
     void run();
-
 };
 
 

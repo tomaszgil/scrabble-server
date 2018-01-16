@@ -16,6 +16,7 @@ class Player {
 
 public:
     Player(struct sockaddr_in player, socklen_t player_size);
+    Player(int a);
 
 };
 

@@ -67,4 +67,8 @@ arpa/inet.h
 -
 iostream
 -
+sys/fcntl.h
+-
+string
+-
 
