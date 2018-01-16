@@ -1,3 +1,0 @@
-/Users/kamil/Projects/scrabble-online/server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/Users/kamil/Projects/scrabble-online/server/cmake-build-debug/CMakeFiles/edit_cache.dir
-/Users/kamil/Projects/scrabble-online/server/cmake-build-debug/CMakeFiles/server.dir
