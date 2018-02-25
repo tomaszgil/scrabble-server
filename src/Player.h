@@ -14,6 +14,7 @@ class Player {
     struct sockaddr_in player_struct;
     socklen_t player_struct_size;
     std::string username;
+    int score;
 
 
 public:
