@@ -47,19 +47,31 @@ void Server::acceptConnection() {
     socklen_t player_tmp_size;
     int client_desc = 0;
     while((client_desc = accept(this->socket_desc, (struct sockaddr*)&player_tmp, &player_tmp_size))> 0){
-       // std::cout << "Connection with client: " << inet_ntoa(player_tmp.sin_addr) << std::endl;
+
+        pthread_t thread_id;
+        pthread_data data={client_desc};
 
         players.emplace_back(player_tmp, player_tmp_size);
 
-        char buffor[50];
-        if(read(client_desc, buffor, sizeof(buffor)) < 0){
-            perror("ERROR");
-            printf("%d", errno);
-        };
-        std:: cout << buffor << std::endl;
+        std::cout << "Connection with client: " << inet_ntoa(player_tmp.sin_addr) << std::endl;
+
+        pthread_create(&thread_id, NULL, Server::handleClient, (void *)&data);
+
     }
 }
 
+void* Server::handleClient(void *data){
+
+    char buffor[50];
+    pthread_data received_data = *((pthread_data*)data);
+
+    if(read(received_data.client_desc, buffor, sizeof(buffor)) < 0){
+        perror("ERROR");
+        printf("%d", errno);
+    };
+    std:: cout << buffor << std::endl;
+    pthread_exit(NULL);
+}
 
 
 

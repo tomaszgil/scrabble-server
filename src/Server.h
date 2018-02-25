@@ -13,6 +13,8 @@
 #include <iostream>
 #include <sys/fcntl.h>
 #include <string>
+#include <cstring>
+#include <pthread.h>
 
 class Server {
 
@@ -31,6 +33,11 @@ public:
     void listenForConnections();
     void acceptConnection();
     void run();
+    static void* handleClient(void* arg);
+
+    struct pthread_data{
+        int client_desc;
+    };
 };
 
 
