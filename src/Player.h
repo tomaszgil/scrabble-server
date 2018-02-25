@@ -13,10 +13,14 @@ class Player {
 
     struct sockaddr_in player_struct;
     socklen_t player_struct_size;
+    std::string username;
+
 
 public:
     Player(struct sockaddr_in player, socklen_t player_size);
     Player(int a);
+    const std::string &getUsername() const;
+    void setUsername(const std::string &username);
 
 };
 
