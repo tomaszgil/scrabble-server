@@ -78,7 +78,6 @@ void Server::acceptConnection() {
 
         pthread_t thread_id;
         pthread_create(&thread_id, NULL, handleClient, (void *)&data);
-
     }
 }
 
@@ -95,18 +94,26 @@ void Server::receiveUsername(int desc, Player player) {
 }
 
 void Server::sendAvaibleRooms(int desc) {
-    std::string room_names[6];
-
+    std::string room_names;
+    std::string temp;
     for(int i =0; i<6; i++){
-        room_names[i] = rooms[i].getName();
-        std:: cout << room_names[i] << std::endl;
+        temp = std::to_string(rooms[i].getFreeSlots());
+        std::cout<<temp<<std::endl;
+        room_names.append(rooms[i].getName()).append("_").append(temp).append("_");
     }
 
-    if(write(desc, &room_names, sizeof(room_names)) <0 ){
+    const char *cstr = room_names.c_str();
+    std::cout << strlen(cstr) << std::endl;
+
+
+    if(write(desc, cstr, sizeof(cstr)*strlen(cstr)) <0 ){
         perror("Couldn't send avaible rooms");
         printf("%d", errno);
     }
+    std:: cout << "Send rooms" << std::endl;
 }
+
+
 
 
 
