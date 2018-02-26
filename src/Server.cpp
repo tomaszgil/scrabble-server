@@ -70,7 +70,8 @@ void *Server::handleClient(void *data){
 
     receiveUsername(received_data.client_desc, received_data.player);
     sendAvaibleRooms(received_data.client_desc);
-    sendBoard(received_data.client_desc);
+    receiveSelectedRoom(received_data.client_desc, received_data.player);
+    sendBoard(received_data.client_desc, received_data.player);
 
     pthread_exit(NULL);
 }
@@ -92,7 +93,7 @@ void Server::acceptConnection() {
 }
 
 
-void Server::receiveUsername(int desc, Player player) {
+void Server::receiveUsername(int desc, Player &player) {
     char buffor[50];
     if(read(desc, buffor, sizeof(buffor)) < 0){
         perror("Couldn't receive username");
@@ -113,31 +114,55 @@ void Server::sendAvaibleRooms(int desc) {
 
     const char *cstr = room_names.c_str();
 
-    if(write(desc, cstr, sizeof(cstr)*strlen(cstr)) <0 ){
+    if(write(desc, cstr, strlen(cstr)) <0 ){
         perror("Couldn't send avaible rooms");
         printf("%d", errno);
     }
     std:: cout << "Send rooms" << std::endl;
 }
 
-void Server::sendBoard(int desc) {
-    std::string temp = "WIADOMOSC";
+void Server::sendBoard(int desc, Player &player) {
+    std::string temp;
+    games[0].board.board[2][3]='A';
 
-    for(int i=0; i<15; i++)
-        for(int j=0; j<15; j++)
-        {
-            temp = (temp + games[0].board.board[i][j]).append("_");
+    int z =0;
+    for(; z<games.size(); z++){
+        if(games[z].room.getName() == player.getRoom().getName())
+            break;
+    }
+
+    for(int i=0; i<15; i++) {
+        for (int j = 0; j < 15; j++) {
+            temp = (temp + games[z].board.board[i][j]).append("_");
         }
+    }
+
     const char *cstr = temp.c_str();
 
-    std::cout<<cstr<<std::endl;
-
-    if(write(desc, cstr, sizeof(cstr)*strlen(cstr)) <0){
+    if(write(desc, cstr, strlen(cstr)) <0){
         perror("Couldn't send current board");
         printf("%d", errno);
     }
     std::cout << "Board send" << std::endl;
-    temp = nullptr;
+}
+
+void Server::receiveSelectedRoom(int desc, Player &player) {
+    char buffor[50];
+    if(read(desc, buffor, sizeof(buffor)) <0){
+        perror("Couldn't receive selected room");
+        printf("%d", errno);
+    }else{
+        std::cout<<buffor<<std::endl;
+        for(int i=0; i< rooms.size(); i++){
+            if(rooms[i].getName()==buffor){
+                player.setRoom(rooms[i]);
+
+                std::cout<<"HALO"<<std::endl;
+                std::cout<<player.getRoom().getName()<<std::endl;
+            }
+        }
+    }
+
 }
 
 

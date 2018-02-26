@@ -18,3 +18,11 @@ const std::string &Player::getUsername() const {
 void Player::setUsername(const std::string &username) {
     Player::username = username;
 }
+
+const Room &Player::getRoom() const {
+    return room;
+}
+
+void Player::setRoom(const Room &room) {
+    Player::room = room;
+}

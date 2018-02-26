@@ -40,9 +40,10 @@ public:
     void createRooms();
     void createGames();
     static void *handleClient(void *data);
-    static void receiveUsername(int desc, Player player);
+    static void receiveUsername(int desc, Player &player);
+    static void receiveSelectedRoom(int desc, Player &player);
     static void sendAvaibleRooms(int desc);
-    static void sendBoard(int desc);
+    static void sendBoard(int desc, Player &player);
 
 
     struct pthread_data {
