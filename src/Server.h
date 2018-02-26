@@ -4,6 +4,7 @@
 #include <vector>
 #include "Player.h"
 #include "Room.h"
+#include "Game.h"
 #include <cstdio>
 #include <sys/socket.h>
 #include <netinet/in.h>
@@ -21,6 +22,7 @@ class Server {
 
     std::vector<Player> players;
 
+
     char *server_address = "127.0.0.1";
     short service_port = 12345;
     int socket_desc;
@@ -36,9 +38,12 @@ public:
     void acceptConnection();
     void run();
     void createRooms();
+    void createGames();
     static void *handleClient(void *data);
-    static void receiveUsername(int desc, Player player);
+    static void receiveUsername(int desc, Player &player);
+    static void receiveSelectedRoom(int desc, Player &player);
     static void sendAvaibleRooms(int desc);
+    static void sendBoard(int desc, Player &player);
 
 
     struct pthread_data {
@@ -52,6 +57,7 @@ public:
     };
 
     static std::vector<Room> rooms;
+    static std::vector<Game> games;
 };
 
 

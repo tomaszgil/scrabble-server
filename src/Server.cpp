@@ -1,6 +1,7 @@
 #include "Server.h"
 
 std::vector<Room> Server::rooms;
+std::vector<Game> Server::games;
 
 Server::Server() {
     int nFoo = 1;
@@ -17,6 +18,7 @@ void Server::run() {
     listenForConnections();
     std::cout << "Server running!" << std::endl;
     createRooms();
+    createGames();
     acceptConnection();
 }
 
@@ -28,6 +30,13 @@ void Server::createRooms() {
     rooms.emplace_back("Echo", 4);
     rooms.emplace_back("Foxtrot", 4);
     std::cout<< "Rooms created"<<    std::endl;
+}
+
+void Server::createGames() {
+    for(int i=0; i<6; i++){
+        games.emplace_back(rooms[i], Board());
+    }
+    std::cout<< "Games created" << std::endl;
 }
 
 void Server::createSocket() {
@@ -61,6 +70,8 @@ void *Server::handleClient(void *data){
 
     receiveUsername(received_data.client_desc, received_data.player);
     sendAvaibleRooms(received_data.client_desc);
+    receiveSelectedRoom(received_data.client_desc, received_data.player);
+    sendBoard(received_data.client_desc, received_data.player);
 
     pthread_exit(NULL);
 }
@@ -82,7 +93,7 @@ void Server::acceptConnection() {
 }
 
 
-void Server::receiveUsername(int desc, Player player) {
+void Server::receiveUsername(int desc, Player &player) {
     char buffor[50];
     if(read(desc, buffor, sizeof(buffor)) < 0){
         perror("Couldn't receive username");
@@ -98,21 +109,59 @@ void Server::sendAvaibleRooms(int desc) {
     std::string temp;
     for(int i =0; i<6; i++){
         temp = std::to_string(rooms[i].getFreeSlots());
-        std::cout<<temp<<std::endl;
         room_names.append(rooms[i].getName()).append("_").append(temp).append("_");
     }
 
     const char *cstr = room_names.c_str();
-    std::cout << strlen(cstr) << std::endl;
 
-
-    if(write(desc, cstr, sizeof(cstr)*strlen(cstr)) <0 ){
+    if(write(desc, cstr, strlen(cstr)) <0 ){
         perror("Couldn't send avaible rooms");
         printf("%d", errno);
     }
     std:: cout << "Send rooms" << std::endl;
 }
 
+void Server::sendBoard(int desc, Player &player) {
+    std::string temp;
+    games[0].board.board[2][3]='A';
+
+    int z =0;
+    for(; z<games.size(); z++){
+        if(games[z].room.getName() == player.getRoom().getName())
+            break;
+    }
+
+    for(int i=0; i<15; i++) {
+        for (int j = 0; j < 15; j++) {
+            temp = (temp + games[z].board.board[i][j]).append("_");
+        }
+    }
+
+    const char *cstr = temp.c_str();
+
+    if(write(desc, cstr, strlen(cstr)) <0){
+        perror("Couldn't send current board");
+        printf("%d", errno);
+    }
+    std::cout << "Board send" << std::endl;
+}
+
+void Server::receiveSelectedRoom(int desc, Player &player) {
+    char buffor[50];
+    if(read(desc, buffor, sizeof(buffor)) <0){
+        perror("Couldn't receive selected room");
+        printf("%d", errno);
+    }else{
+        std::cout<<buffor<<std::endl;
+        for(int i=0; i< rooms.size(); i++){
+            if(rooms[i].getName()==buffor){
+                player.setRoom(rooms[i]);
+                std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom().getName() << std::endl;
+            }
+        }
+    }
+
+}
 
 
 
