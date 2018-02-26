@@ -156,9 +156,7 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
         for(int i=0; i< rooms.size(); i++){
             if(rooms[i].getName()==buffor){
                 player.setRoom(rooms[i]);
-
-                std::cout<<"HALO"<<std::endl;
-                std::cout<<player.getRoom().getName()<<std::endl;
+                std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom().getName() << std::endl;
             }
         }
     }
