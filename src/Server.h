@@ -42,7 +42,7 @@ public:
     static void sendBoard(int desc, Player &player);
     static void sendAvaibleLetters(int desc, Player &player);
     static bool sendStringToClient(int desc, std::string &message);
-    static void sendPlayersFromCurrentRoom(int desc, Player &player);
+    static void sendPlayersFromCurrentRoom(int desc, Player &player, int x =0);
 
 
     struct pthread_data {

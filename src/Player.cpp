@@ -1,10 +1,11 @@
 #include "Player.h"
 
-Player::Player(struct sockaddr_in player, socklen_t player_size) {
+Player::Player(struct sockaddr_in player, socklen_t player_size, int desc) {
 
     player_struct = player;
     player_struct_size = player_size;
     score = "000";
+    socket_desc = desc;
 
 }
 
@@ -34,5 +35,13 @@ const std::string &Player::getScore() const {
 
 void Player::setScore(const std::string &score) {
     Player::score = score;
+}
+
+int Player::getSocket_desc() const {
+    return socket_desc;
+}
+
+void Player::setSocket_desc(int socket_desc) {
+    Player::socket_desc = socket_desc;
 }
 
