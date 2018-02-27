@@ -19,10 +19,6 @@
 #include <thread>
 
 class Server {
-
-    std::vector<Player> players;
-
-
     char *server_address = "127.0.0.1";
     short service_port = 12345;
     int socket_desc;
@@ -46,11 +42,12 @@ public:
     static void sendBoard(int desc, Player &player);
     static void sendAvaibleLetters(int desc, Player &player);
     static bool sendStringToClient(int desc, std::string &message);
+    static void sendPlayersFromCurrentRoom(int desc, Player &player);
 
 
     struct pthread_data {
         int client_desc;
-        Player player;
+        Player &player;
     };
 
     struct room_data{
@@ -60,6 +57,7 @@ public:
 
     static std::vector<Room> rooms;
     static std::vector<Game> games;
+    static std::vector<Player> players;
 };
 
 

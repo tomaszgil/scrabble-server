@@ -4,6 +4,7 @@ Player::Player(struct sockaddr_in player, socklen_t player_size) {
 
     player_struct = player;
     player_struct_size = player_size;
+    score = "000";
 
 }
 
@@ -26,3 +27,12 @@ const Room &Player::getRoom() const {
 void Player::setRoom(const Room &room) {
     Player::room = room;
 }
+
+const std::string &Player::getScore() const {
+    return score;
+}
+
+void Player::setScore(const std::string &score) {
+    Player::score = score;
+}
+

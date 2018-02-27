@@ -15,15 +15,19 @@ class Player {
     struct sockaddr_in player_struct;
     socklen_t player_struct_size;
     std::string username;
-    int score;
+    std::string score;
+public:
+    const std::string &getScore() const;
+
+    void setScore(const std::string &score);
+
+private:
     Room room;
+
 public:
     const Room &getRoom() const;
 
     void setRoom(const Room &room);
-
-
-public:
     Player(struct sockaddr_in player, socklen_t player_size);
     Player(int a);
     const std::string &getUsername() const;
