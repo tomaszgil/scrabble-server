@@ -44,6 +44,8 @@ public:
     static void receiveSelectedRoom(int desc, Player &player);
     static void sendAvaibleRooms(int desc);
     static void sendBoard(int desc, Player &player);
+    static void sendAvaibleLetters(int desc, Player &player);
+    static bool sendStringToClient(int desc, std::string &message);
 
 
     struct pthread_data {
