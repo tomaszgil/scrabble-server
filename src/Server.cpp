@@ -72,6 +72,7 @@ void *Server::handleClient(void *data){
     sendAvaibleRooms(received_data.client_desc);
     receiveSelectedRoom(received_data.client_desc, received_data.player);
     sendBoard(received_data.client_desc, received_data.player);
+    sendAvaibleLetters(received_data.client_desc, received_data.player);
 
     pthread_exit(NULL);
 }
@@ -112,38 +113,10 @@ void Server::sendAvaibleRooms(int desc) {
         room_names.append(rooms[i].getName()).append("_").append(temp).append("_");
     }
 
-    const char *cstr = room_names.c_str();
-
-    if(write(desc, cstr, strlen(cstr)) <0 ){
-        perror("Couldn't send avaible rooms");
-        printf("%d", errno);
+    if(!sendStringToClient(desc, room_names)){
+        std::cout<< "Couldn't send avaible rooms" << std::endl;
     }
     std:: cout << "Send rooms" << std::endl;
-}
-
-void Server::sendBoard(int desc, Player &player) {
-    std::string temp;
-    games[0].board.board[2][3]='A';
-
-    int z =0;
-    for(; z<games.size(); z++){
-        if(games[z].room.getName() == player.getRoom().getName())
-            break;
-    }
-
-    for(int i=0; i<15; i++) {
-        for (int j = 0; j < 15; j++) {
-            temp = (temp + games[z].board.board[i][j]).append("_");
-        }
-    }
-
-    const char *cstr = temp.c_str();
-
-    if(write(desc, cstr, strlen(cstr)) <0){
-        perror("Couldn't send current board");
-        printf("%d", errno);
-    }
-    std::cout << "Board send" << std::endl;
 }
 
 void Server::receiveSelectedRoom(int desc, Player &player) {
@@ -152,7 +125,6 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
         perror("Couldn't receive selected room");
         printf("%d", errno);
     }else{
-        std::cout<<buffor<<std::endl;
         for(int i=0; i< rooms.size(); i++){
             if(rooms[i].getName()==buffor){
                 player.setRoom(rooms[i]);
@@ -162,6 +134,56 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
     }
 
 }
+
+void Server::sendBoard(int desc, Player &player) {
+    std::string temp;
+    games[0].board.board[2][3]='A';
+
+    int z =0;
+    for(; z<games.size(); z++){
+        if(games[z].room.getName() == player.getRoom().getName())
+
+            break;
+    }
+
+    for(int i=0; i<15; i++) {
+        for (int j = 0; j < 15; j++) {
+            temp = (temp + games[z].board.board[i][j]).append("_");
+        }
+    }
+
+    if(!sendStringToClient(desc,temp)){
+        std::cout << "Could'nt send board" << std::endl;
+    }
+    std::cout << "Board send" << std::endl;
+}
+
+void Server::sendAvaibleLetters(int desc, Player &player){
+    std::string temp;
+
+    for(int i=0; i<7; i++){
+        char letter = 'A' + rand()%26;
+        temp = (temp + letter).append("_");
+    }
+
+    if(!sendStringToClient(desc,temp)){
+        std::cout << "Could'nt send letters" << std::endl;
+    }
+    std::cout << "Letters send" << std::endl;
+}
+
+bool Server::sendStringToClient(int desc, std::string &message) {
+    const char *cstr = message.c_str();
+
+    if(write(desc, cstr, strlen(cstr))<0){
+        printf("%d", errno);
+        return false;
+    }
+    return true;
+}
+
+
+
 
 
 
