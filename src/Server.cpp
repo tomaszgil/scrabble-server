@@ -159,7 +159,7 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
                 for(int j=0; j<rooms[i].players.size(); j++){
                     if(rooms[i].players[j].getUsername() != player.getUsername()){
                         sendPlayersFromCurrentRoom(rooms[i].players[j].getSocket_desc(), rooms[i].players[j], 1);
-                        std::cout<<"Wyslalem info do " << rooms[i].players[j].getUsername() <<std::endl;
+                        std::cout<<"Sending info about new player to: " << rooms[i].players[j].getUsername() <<std::endl;
                     }
                 }
             }
@@ -218,15 +218,21 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
     std::string message;
     std::string temp;
 
-
     int foundUsers = 0;
-    for(int i=0; i<players.size(); i++){
-       if(players[i].getRoom() == player.getRoom() && players[i].getUsername() != player.getUsername()){
-            foundUsers++;
-               message.append(players[i].getUsername()).append("_").append(players[i].getScore()).append("_");
-
-       }
+    int z=0;
+    for(; z<rooms.size(); z++){
+        if(rooms[z].getName() == player.getRoom()){
+            break;
+        }
     }
+
+    for(int i=0; i<rooms[z].players.size(); i++){
+        if(rooms[z].players[i].getRoom() == player.getRoom() && rooms[z].players[i].getUsername() != player.getUsername()){
+            foundUsers++;
+            message.append(rooms[z].players[i].getUsername()).append("_").append(rooms[z].players[i].getScore()).append("_");
+        }
+    }
+
     if(message.empty()){
         if(x == 1){
             message = "1";
