@@ -150,7 +150,7 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
     }else{
         for(int i=0; i< rooms.size(); i++){
             if(rooms[i].getName()==buffor){
-                if(rooms[i].players.empty()) {
+                if(rooms[i].players.empty() ) {
                     player.setTurn(true);
                 }
 
@@ -183,16 +183,27 @@ void Server::sendBoard(int desc, Player &player, int code) {
         temp.append(player.getUsername()).append("_").append(player.getScore()).append("_");
     }
 
-    if(player.isTurn()){
-        temp.append("t_");
-    }else{
-        temp.append("f_");
-    }
-
     int z =0;
     for(; z<games.size(); z++){
         if(games[z].room.getName() == player.getRoom()){
             break;
+        }
+    }
+
+    int y=0;
+    for(; y<rooms.size(); y++){
+        if(rooms[y].getName() == player.getRoom()){
+            break;
+        }
+    }
+
+    for(int i =0; i<rooms[y].players.size(); i++){
+        if(rooms[y].players[i].getSocket_desc() == desc){
+            if(rooms[y].players[i].isTurn()){
+                temp.append("t_");
+            }else{
+                temp.append("f_");
+            }
         }
     }
 
@@ -320,6 +331,7 @@ void Server::receiveUserMove(int desc, Player &player){
             for(int i=0; i<rooms[z].players.size(); i++){
                 if(rooms[z].players[i].getUsername() == player.getUsername()){
                     rooms[z].players[i].setTurn(false);
+                    rooms[z].players[i].setScore(seglist[2]);
 
                     if(i+1<rooms[z].players.size()){
                         rooms[z].players[i+1].setTurn(true);
@@ -346,7 +358,7 @@ void Server::sendMoveToOtherPlayers(int desc, Player &player) {
 
     for(int i = 0; i<rooms[z].players.size(); i++) {
         if (rooms[z].players[i].getUsername() != player.getUsername() && rooms[z].players.size() > 1) {
-            sendBoard(rooms[z].players[i].getSocket_desc(), rooms[z].players[i], 2);
+            sendBoard(rooms[z].players[i].getSocket_desc(), player, 2);
             std::cout << "Send new board to: " << rooms[z].players[i].getUsername() << std::endl;
 
         }
