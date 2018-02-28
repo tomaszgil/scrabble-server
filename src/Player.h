@@ -8,7 +8,7 @@
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <iostream>
-#include "Room.h"
+
 
 class Player {
 
@@ -17,7 +17,7 @@ class Player {
     std::string username;
     std::string score;
     int socket_desc;
-    Room room;
+    std::string room;
 
 
 public:
@@ -25,8 +25,8 @@ public:
     void setSocket_desc(int socket_desc);
     const std::string &getScore() const;
     void setScore(const std::string &score);
-    const Room &getRoom() const;
-    void setRoom(const Room &room);
+    const std::string &getRoom() const;
+    void setRoom(const std::string &room);
     Player(struct sockaddr_in player, socklen_t player_size, int socket_desc);
     Player(int a);
     const std::string &getUsername() const;

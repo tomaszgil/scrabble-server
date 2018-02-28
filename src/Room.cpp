@@ -25,3 +25,7 @@ int Room::getFreeSlots() const {
 void Room::setFreeSlots(int freeSlots) {
     Room::freeSlots = freeSlots;
 }
+
+void Room::addPlayer(Player &player) {
+    Room::players.push_back(player);
+}
