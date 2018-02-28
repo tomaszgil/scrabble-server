@@ -6,6 +6,7 @@ Player::Player(struct sockaddr_in player, socklen_t player_size, int desc) {
     player_struct_size = player_size;
     score = "000";
     socket_desc = desc;
+    turn = false;
 
 }
 
@@ -43,6 +44,14 @@ int Player::getSocket_desc() const {
 
 void Player::setSocket_desc(int socket_desc) {
     Player::socket_desc = socket_desc;
+}
+
+bool Player::isTurn() const {
+    return turn;
+}
+
+void Player::setTurn(bool turn) {
+    Player::turn = turn;
 }
 
 

@@ -150,6 +150,10 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
     }else{
         for(int i=0; i< rooms.size(); i++){
             if(rooms[i].getName()==buffor){
+                if(rooms[i].players.empty()) {
+                    player.setTurn(true);
+                }
+
                 player.setRoom(rooms[i].getName());
                 rooms[i].addPlayer(player);
                 rooms[i].setFreeSlots(rooms[i].getFreeSlots()-1);
@@ -177,6 +181,12 @@ void Server::sendBoard(int desc, Player &player, int code) {
         length=480;
         temp ="2_";
         temp.append(player.getUsername()).append("_").append(player.getScore()).append("_");
+    }
+
+    if(player.isTurn()){
+        temp.append("t_");
+    }else{
+        temp.append("f_");
     }
 
     int z =0;
@@ -282,18 +292,39 @@ void Server::receiveUserMove(int desc, Player &player){
         std::string player_name = seglist[1];
         player.setScore(seglist[2]);
 
+        player.setTurn(false);
+
         int z=0;
         for(; z<games.size(); z++){
             if(games[z].room.getName() == player.getRoom()){
                 break;
             }
         }
+
         int p=3;
         for(int i=0; i<15; i++){
             for(int j=0; j<15; j++){
                 games[z].board.board[i][j]=seglist[p][0];
                 p++;
             }
+        }
+
+        z=0;
+        for(; z<rooms.size(); z++){
+            if(rooms[z].getName() == player.getRoom()){
+                break;
+            }
+        }
+        if(rooms[z].players.size()>1){
+            for(int i=0; i<rooms[z].players.size(); i++){
+                if(rooms[z].players[i].getUsername() == player.getUsername() && i+1<rooms[z].players.size()){
+                    rooms[z].players[i+1].setTurn(true);
+                }else{
+                    rooms[z].players[0].setTurn(true);
+                }
+            }
+        }else{
+            player.setTurn(true);
         }
     }
 }
