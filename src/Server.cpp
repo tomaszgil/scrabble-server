@@ -2,6 +2,7 @@
 
 std::vector<Room> Server::rooms;
 std::vector<Game> Server::games;
+std::vector<Player> Server::players;
 
 Server::Server() {
     int nFoo = 1;
@@ -64,8 +65,17 @@ void Server::listenForConnections() {
     std::cout << "Listening for new connections" << std::endl;
 }
 
-void *Server::handleClient(void *data){
+bool Server::sendStringToClient(int desc, std::string &message) {
+    const char *cstr = message.c_str();
 
+    if(write(desc, cstr, strlen(cstr))<0){
+        printf("%d", errno);
+        return false;
+    }
+    return true;
+}
+
+void *Server::handleClient(void *data){
     pthread_data received_data = *((pthread_data *)data);
 
     receiveUsername(received_data.client_desc, received_data.player);
@@ -73,6 +83,7 @@ void *Server::handleClient(void *data){
     receiveSelectedRoom(received_data.client_desc, received_data.player);
     sendBoard(received_data.client_desc, received_data.player);
     sendAvaibleLetters(received_data.client_desc, received_data.player);
+    sendPlayersFromCurrentRoom(received_data.client_desc, received_data.player);
 
     pthread_exit(NULL);
 }
@@ -84,7 +95,7 @@ void Server::acceptConnection() {
     int client_desc = 0;
     while((client_desc = accept(this->socket_desc, (struct sockaddr*)&player_tmp, &player_tmp_size))> 0){
 
-        players.emplace_back(player_tmp, player_tmp_size);
+        players.emplace_back(player_tmp, player_tmp_size, client_desc);
 
         pthread_data data ={client_desc, players.back()};
 
@@ -128,7 +139,16 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
         for(int i=0; i< rooms.size(); i++){
             if(rooms[i].getName()==buffor){
                 player.setRoom(rooms[i]);
+                rooms[i].setFreeSlots(rooms[i].getFreeSlots()-1);
                 std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom().getName() << std::endl;
+
+                // Send info to other users in room
+                for(int j=0; j < players.size(); j++){
+                    if(players[j].getRoom().getName() == player.getRoom().getName() && players[j].getUsername() != player.getUsername()){
+                        sendPlayersFromCurrentRoom(players[j].getSocket_desc(), player, 1);
+                        std::cout<<"Wyslalem info do: " << players[j].getUsername() << std::endl;
+                    }
+                }
             }
         }
     }
@@ -172,14 +192,51 @@ void Server::sendAvaibleLetters(int desc, Player &player){
     std::cout << "Letters send" << std::endl;
 }
 
-bool Server::sendStringToClient(int desc, std::string &message) {
-    const char *cstr = message.c_str();
 
-    if(write(desc, cstr, strlen(cstr))<0){
-        printf("%d", errno);
-        return false;
+void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
+    std::string message;
+    std::string temp;
+
+
+    int foundUsers = 0;
+    for(int i=0; i<players.size(); i++){
+       if(players[i].getRoom().getName() == player.getRoom().getName() && players[i].getUsername() != player.getUsername()){
+            foundUsers++;
+           if(x == 1){
+               message.append(player.getUsername()).append("_").append(player.getScore()).append("_");
+           }else{
+               message.append(players[i].getUsername()).append("_").append(players[i].getScore()).append("_");
+           }
+       }
     }
-    return true;
+    if(message.empty()){
+        if(x == 1){
+            message = "1";
+        }else{
+            message = "0";
+        }
+        temp.append(message);
+    }else{
+        if(x == 1){
+            temp = std::to_string(x).append("_").append(std::to_string(foundUsers)).append("_").append(message);
+        }else{
+            temp = std::to_string(foundUsers).append("_").append(message);
+        }
+    }
+
+    const char *cstr = temp.c_str();
+    int size =0;
+
+    if(x == 1)
+        size = 102;
+    else
+        size = 100;
+
+    if(write(desc, cstr, size)<0){
+        printf("%d", errno);
+        std::cout<<"Couldn't send players"<<std::endl;
+    }
+    std::cout<<"Players send"<<std::endl;
 }
 
 
