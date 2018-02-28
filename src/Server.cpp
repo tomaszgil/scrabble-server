@@ -206,6 +206,7 @@ void Server::sendBoard(int desc, Player &player, int code) {
         std::cout << "Couldn't send board" << std::endl;
     }else{
         std::cout << "Board send" << std::endl;
+        std::cout<<temp<<std::endl;
     }
 }
 
@@ -317,11 +318,17 @@ void Server::receiveUserMove(int desc, Player &player){
         }
         if(rooms[z].players.size()>1){
             for(int i=0; i<rooms[z].players.size(); i++){
-                if(rooms[z].players[i].getUsername() == player.getUsername() && i+1<rooms[z].players.size()){
-                    rooms[z].players[i+1].setTurn(true);
-                }else{
-                    rooms[z].players[0].setTurn(true);
+                if(rooms[z].players[i].getUsername() == player.getUsername()){
+                    rooms[z].players[i].setTurn(false);
+
+                    if(i+1<rooms[z].players.size()){
+                        rooms[z].players[i+1].setTurn(true);
+                    }else{
+                        rooms[z].players[0].setTurn(true);
+                    }
                 }
+                std::cout << player.isTurn() << std::endl;
+                std:: cout<< rooms[z].players[i].getUsername() << " " <<  rooms[z].players[i].isTurn() << std :: endl;
             }
         }else{
             player.setTurn(true);
@@ -339,7 +346,7 @@ void Server::sendMoveToOtherPlayers(int desc, Player &player) {
 
     for(int i = 0; i<rooms[z].players.size(); i++) {
         if (rooms[z].players[i].getUsername() != player.getUsername() && rooms[z].players.size() > 1) {
-            sendBoard(rooms[z].players[i].getSocket_desc(), player, 2);
+            sendBoard(rooms[z].players[i].getSocket_desc(), rooms[z].players[i], 2);
             std::cout << "Send new board to: " << rooms[z].players[i].getUsername() << std::endl;
 
         }
