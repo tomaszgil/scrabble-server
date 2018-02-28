@@ -156,10 +156,10 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
                 std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom() << std::endl;
 
                 // Send info to other users in room
-                for(int j=0; j < players.size(); j++){
-                    if(players[j].getRoom() == player.getRoom() && players[j].getUsername() != player.getUsername()){
-                        sendPlayersFromCurrentRoom(players[j].getSocket_desc(), players[j], 1);
-                        std::cout<<"Wyslalem info do: " << players[j].getUsername() << std::endl;
+                for(int j=0; j<rooms[i].players.size(); j++){
+                    if(rooms[i].players[j].getUsername() != player.getUsername()){
+                        sendPlayersFromCurrentRoom(rooms[i].players[j].getSocket_desc(), rooms[i].players[j], 1);
+                        std::cout<<"Wyslalem info do " << rooms[i].players[j].getUsername() <<std::endl;
                     }
                 }
             }
