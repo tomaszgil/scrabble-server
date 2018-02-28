@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Server.h"
 
 std::vector<Room> Server::rooms;
@@ -84,6 +85,7 @@ void *Server::handleClient(void *data){
     sendBoard(received_data.client_desc, received_data.player);
     sendAvaibleLetters(received_data.client_desc, received_data.player);
     sendPlayersFromCurrentRoom(received_data.client_desc, received_data.player);
+    receiveUserMove(received_data.client_desc, received_data.player);
 
     pthread_exit(NULL);
 }
@@ -161,9 +163,9 @@ void Server::sendBoard(int desc, Player &player) {
 
     int z =0;
     for(; z<games.size(); z++){
-        if(games[z].room.getName() == player.getRoom().getName())
-
+        if(games[z].room.getName() == player.getRoom().getName()){
             break;
+        }
     }
 
     for(int i=0; i<15; i++) {
@@ -191,7 +193,6 @@ void Server::sendAvaibleLetters(int desc, Player &player){
     }
     std::cout << "Letters send" << std::endl;
 }
-
 
 void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
     std::string message;
@@ -237,6 +238,43 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
         std::cout<<"Couldn't send players"<<std::endl;
     }
     std::cout<<"Players send"<<std::endl;
+}
+
+void Server::receiveUserMove(int desc, Player &player){
+    char buffer[480];
+    if(read(desc, buffer, sizeof(buffer)) < 0){
+        perror("Couldn't receive user move");
+        printf("%d", errno);
+    }else{
+        std::stringstream message(buffer);
+        std::string segment;
+        std::vector<std::string> seglist;
+
+        while(std::getline(message, segment, '_')){
+            seglist.push_back(segment);
+        }
+
+        std::string player_name = seglist[1];
+        player.setScore(seglist[2]);
+
+        int z=0;
+        for(; z<games.size(); z++){
+            if(games[z].room.getName() == player.getRoom().getName()){
+                break;
+            }
+        }
+        int p=3;
+        for(int i=0; i<15; i++){
+            for(int j=0; j<15; j++){
+                games[z].board.board[i][j]=seglist[p][0];
+                std::cout<<games[z].board.board[i][j];
+                p++;
+            }
+            std::cout<<std::endl;
+        }
+
+
+    }
 }
 
 
