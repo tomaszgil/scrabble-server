@@ -21,11 +21,11 @@ void Player::setUsername(const std::string &username) {
     Player::username = username;
 }
 
-const Room &Player::getRoom() const {
+const std::string &Player::getRoom() const {
     return room;
 }
 
-void Player::setRoom(const Room &room) {
+void Player::setRoom(const std::string &room) {
     Player::room = room;
 }
 
@@ -44,4 +44,5 @@ int Player::getSocket_desc() const {
 void Player::setSocket_desc(int socket_desc) {
     Player::socket_desc = socket_desc;
 }
+
 

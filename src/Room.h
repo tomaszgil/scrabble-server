@@ -4,6 +4,9 @@
 #include <cstdio>
 #include <string>
 #include <cstring>
+#include <vector>
+#include "Player.h"
+
 
 class Room {
 
@@ -12,6 +15,8 @@ private:
     std::string name;
 
 public:
+    std::vector<Player> players;
+
     Room();
     Room(std::string name, int freeSlots);
     const std::string &getName() const;
@@ -21,6 +26,9 @@ public:
     int getFreeSlots() const;
 
     void setFreeSlots(int freeSlots);
+
+    void addPlayer(Player &player);
+
 };
 
 

@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Server.h"
 
 std::vector<Room> Server::rooms;
@@ -65,10 +66,17 @@ void Server::listenForConnections() {
     std::cout << "Listening for new connections" << std::endl;
 }
 
-bool Server::sendStringToClient(int desc, std::string &message) {
+bool Server::sendStringToClient(int desc, std::string &message, int size) {
     const char *cstr = message.c_str();
 
-    if(write(desc, cstr, strlen(cstr))<0){
+    int length=0;
+    if(size !=0){
+        length=size;
+    }else{
+        length=strlen(cstr);
+    }
+
+    if(write(desc, cstr, length)<0){
         printf("%d", errno);
         return false;
     }
@@ -76,14 +84,17 @@ bool Server::sendStringToClient(int desc, std::string &message) {
 }
 
 void *Server::handleClient(void *data){
-    pthread_data received_data = *((pthread_data *)data);
+   // pthread_data received_data = *((pthread_data *)data);
+    Player received_data = *((Player * )data);
 
-    receiveUsername(received_data.client_desc, received_data.player);
-    sendAvaibleRooms(received_data.client_desc);
-    receiveSelectedRoom(received_data.client_desc, received_data.player);
-    sendBoard(received_data.client_desc, received_data.player);
-    sendAvaibleLetters(received_data.client_desc, received_data.player);
-    sendPlayersFromCurrentRoom(received_data.client_desc, received_data.player);
+    receiveUsername(received_data.getSocket_desc(), received_data);
+    sendAvaibleRooms(received_data.getSocket_desc());
+    receiveSelectedRoom(received_data.getSocket_desc(), received_data);
+    sendBoard(received_data.getSocket_desc(), received_data);
+    sendAvaibleLetters(received_data.getSocket_desc(), received_data);
+    sendPlayersFromCurrentRoom(received_data.getSocket_desc(), received_data);
+    receiveUserMove(received_data.getSocket_desc(), received_data);
+    sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
 
     pthread_exit(NULL);
 }
@@ -100,7 +111,7 @@ void Server::acceptConnection() {
         pthread_data data ={client_desc, players.back()};
 
         pthread_t thread_id;
-        pthread_create(&thread_id, NULL, handleClient, (void *)&data);
+        pthread_create(&thread_id, NULL, handleClient, (void *)&players.back());
     }
 }
 
@@ -126,8 +137,9 @@ void Server::sendAvaibleRooms(int desc) {
 
     if(!sendStringToClient(desc, room_names)){
         std::cout<< "Couldn't send avaible rooms" << std::endl;
+    }else {
+        std:: cout << "Send rooms" << std::endl;
     }
-    std:: cout << "Send rooms" << std::endl;
 }
 
 void Server::receiveSelectedRoom(int desc, Player &player) {
@@ -138,15 +150,16 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
     }else{
         for(int i=0; i< rooms.size(); i++){
             if(rooms[i].getName()==buffor){
-                player.setRoom(rooms[i]);
+                player.setRoom(rooms[i].getName());
+                rooms[i].addPlayer(player);
                 rooms[i].setFreeSlots(rooms[i].getFreeSlots()-1);
-                std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom().getName() << std::endl;
+                std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom() << std::endl;
 
                 // Send info to other users in room
-                for(int j=0; j < players.size(); j++){
-                    if(players[j].getRoom().getName() == player.getRoom().getName() && players[j].getUsername() != player.getUsername()){
-                        sendPlayersFromCurrentRoom(players[j].getSocket_desc(), player, 1);
-                        std::cout<<"Wyslalem info do: " << players[j].getUsername() << std::endl;
+                for(int j=0; j<rooms[i].players.size(); j++){
+                    if(rooms[i].players[j].getUsername() != player.getUsername()){
+                        sendPlayersFromCurrentRoom(rooms[i].players[j].getSocket_desc(), rooms[i].players[j], 1);
+                        std::cout<<"Sending info about new player to: " << rooms[i].players[j].getUsername() <<std::endl;
                     }
                 }
             }
@@ -155,15 +168,22 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
 
 }
 
-void Server::sendBoard(int desc, Player &player) {
+void Server::sendBoard(int desc, Player &player, int code) {
     std::string temp;
     games[0].board.board[2][3]='A';
+    int length=0;
+
+    if(code == 2){
+        length=480;
+        temp ="2_";
+        temp.append(player.getUsername()).append("_").append(player.getScore()).append("_");
+    }
 
     int z =0;
     for(; z<games.size(); z++){
-        if(games[z].room.getName() == player.getRoom().getName())
-
+        if(games[z].room.getName() == player.getRoom()){
             break;
+        }
     }
 
     for(int i=0; i<15; i++) {
@@ -172,10 +192,11 @@ void Server::sendBoard(int desc, Player &player) {
         }
     }
 
-    if(!sendStringToClient(desc,temp)){
-        std::cout << "Could'nt send board" << std::endl;
+    if(!sendStringToClient(desc,temp,length)){
+        std::cout << "Couldn't send board" << std::endl;
+    }else{
+        std::cout << "Board send" << std::endl;
     }
-    std::cout << "Board send" << std::endl;
 }
 
 void Server::sendAvaibleLetters(int desc, Player &player){
@@ -187,28 +208,31 @@ void Server::sendAvaibleLetters(int desc, Player &player){
     }
 
     if(!sendStringToClient(desc,temp)){
-        std::cout << "Could'nt send letters" << std::endl;
+        std::cout << "Couldn't send letters" << std::endl;
+    }else{
+        std::cout << "Letters send" << std::endl;
     }
-    std::cout << "Letters send" << std::endl;
 }
-
 
 void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
     std::string message;
     std::string temp;
 
-
     int foundUsers = 0;
-    for(int i=0; i<players.size(); i++){
-       if(players[i].getRoom().getName() == player.getRoom().getName() && players[i].getUsername() != player.getUsername()){
-            foundUsers++;
-           if(x == 1){
-               message.append(player.getUsername()).append("_").append(player.getScore()).append("_");
-           }else{
-               message.append(players[i].getUsername()).append("_").append(players[i].getScore()).append("_");
-           }
-       }
+    int z=0;
+    for(; z<rooms.size(); z++){
+        if(rooms[z].getName() == player.getRoom()){
+            break;
+        }
     }
+
+    for(int i=0; i<rooms[z].players.size(); i++){
+        if(rooms[z].players[i].getRoom() == player.getRoom() && rooms[z].players[i].getUsername() != player.getUsername()){
+            foundUsers++;
+            message.append(rooms[z].players[i].getUsername()).append("_").append(rooms[z].players[i].getScore()).append("_");
+        }
+    }
+
     if(message.empty()){
         if(x == 1){
             message = "1";
@@ -235,9 +259,64 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
     if(write(desc, cstr, size)<0){
         printf("%d", errno);
         std::cout<<"Couldn't send players"<<std::endl;
+    }else{
+        std::cout<<"Players send"<<std::endl;
     }
-    std::cout<<"Players send"<<std::endl;
 }
+
+void Server::receiveUserMove(int desc, Player &player){
+    char buffer[480];
+    int x = 0;
+    if((x = read(desc, buffer, sizeof(buffer))) < 0){
+        perror("Couldn't receive user move");
+        printf("%d", errno);
+    }else if(x!=0){
+        std::stringstream message(buffer);
+        std::string segment;
+        std::vector<std::string> seglist;
+
+        while(std::getline(message, segment, '_')){
+            seglist.push_back(segment);
+        }
+
+        std::string player_name = seglist[1];
+        player.setScore(seglist[2]);
+
+        int z=0;
+        for(; z<games.size(); z++){
+            if(games[z].room.getName() == player.getRoom()){
+                break;
+            }
+        }
+        int p=3;
+        for(int i=0; i<15; i++){
+            for(int j=0; j<15; j++){
+                games[z].board.board[i][j]=seglist[p][0];
+                p++;
+            }
+        }
+    }
+}
+
+void Server::sendMoveToOtherPlayers(int desc, Player &player) {
+    int z =0;
+    for(; z< rooms.size(); z++){
+        if(rooms[z].getName() == player.getRoom()){
+            break;
+        }
+    }
+
+    for(int i = 0; i<rooms[z].players.size(); i++) {
+        if (rooms[z].players[i].getUsername() != player.getUsername() && rooms[z].players.size() > 1) {
+            sendBoard(rooms[z].players[i].getSocket_desc(), player, 2);
+            std::cout << "Send new board to: " << rooms[z].players[i].getUsername() << std::endl;
+
+        }
+    }
+    //TODO Gracz gra samemu wiec kolejny ruch tez jest jego
+
+}
+
 
 
 
