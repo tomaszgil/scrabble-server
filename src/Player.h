@@ -18,9 +18,11 @@ class Player {
     std::string score;
     int socket_desc;
     std::string room;
-
+    bool turn;
 
 public:
+    bool isTurn() const;
+    void setTurn(bool turn);
     int getSocket_desc() const;
     void setSocket_desc(int socket_desc);
     const std::string &getScore() const;
