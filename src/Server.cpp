@@ -98,6 +98,7 @@ void *Server::handleClient(void *data){
 
     char buffer[2];
     int x =0;
+    unsigned int miliseconds = 1000;
     while(true){
         sendPlayersFromCurrentRoom(received_data.getSocket_desc(), received_data, 1 );
         if((x = read(received_data.getSocket_desc(), buffer, sizeof(buffer))) < 0){
@@ -110,6 +111,7 @@ void *Server::handleClient(void *data){
                 sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
             } else if (buffer[0] == '2') {
                 quitRoom(received_data.getSocket_desc(), received_data);
+                usleep(4*miliseconds);
                 sendAvaibleRooms(received_data.getSocket_desc());
                 receiveSelectedRoom(received_data.getSocket_desc(), received_data);
                 sendBoard(received_data.getSocket_desc(), received_data);
@@ -157,6 +159,7 @@ void Server::sendAvaibleRooms(int desc) {
         room_names.append(rooms[i].getName()).append("_").append(temp).append("_");
     }
 
+    std::cout<<room_names<<std::endl;
     if(!sendStringToClient(desc, room_names)){
         std::cout<< "Couldn't send avaible rooms" << std::endl;
     }else {

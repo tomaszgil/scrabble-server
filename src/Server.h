@@ -17,6 +17,7 @@
 #include <cstring>
 #include <pthread.h>
 #include <thread>
+#include <unistd.h>
 
 class Server {
     char *server_address = "127.0.0.1";
