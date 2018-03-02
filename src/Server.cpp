@@ -150,7 +150,7 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
     }else{
         for(int i=0; i< rooms.size(); i++){
             if(rooms[i].getName()==buffor){
-                if(rooms[i].players.empty()) {
+                if(rooms[i].players.empty() ) {
                     player.setTurn(true);
                 }
 
@@ -183,16 +183,27 @@ void Server::sendBoard(int desc, Player &player, int code) {
         temp.append(player.getUsername()).append("_").append(player.getScore()).append("_");
     }
 
-    if(player.isTurn()){
-        temp.append("t_");
-    }else{
-        temp.append("f_");
-    }
-
     int z =0;
     for(; z<games.size(); z++){
         if(games[z].room.getName() == player.getRoom()){
             break;
+        }
+    }
+
+    int y=0;
+    for(; y<rooms.size(); y++){
+        if(rooms[y].getName() == player.getRoom()){
+            break;
+        }
+    }
+
+    for(int i =0; i<rooms[y].players.size(); i++){
+        if(rooms[y].players[i].getSocket_desc() == desc){
+            if(rooms[y].players[i].isTurn()){
+                temp.append("t_");
+            }else{
+                temp.append("f_");
+            }
         }
     }
 
@@ -210,13 +221,21 @@ void Server::sendBoard(int desc, Player &player, int code) {
     }
 }
 
-void Server::sendAvaibleLetters(int desc, Player &player){
+void Server::sendAvaibleLetters(int desc, Player &player, int x){
     std::string temp;
 
-    for(int i=0; i<7; i++){
-        char letter = 'A' + rand()%26;
-        temp = (temp + letter).append("_");
+    if(x == 1){
+        temp = "3_";
+        temp = (temp + player.getAvaible_letters()).append("_");
+    }else{
+        for(int i=0; i<7; i++){
+            char letter = 'A' + rand()%26;
+            temp = (temp + letter).append("_");
+        }
     }
+    
+    std::cout<< "WYSYLAM " << temp << std::endl;
+
 
     if(!sendStringToClient(desc,temp)){
         std::cout << "Couldn't send letters" << std::endl;
@@ -275,8 +294,17 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
     }
 }
 
+void getNewLetters(Player &player){
+    int index;
+    while((index = player.getAvaible_letters().find("0")) != -1){
+        std::string letters = player.getAvaible_letters();
+        letters[index] = 'A' + rand()%26;
+        player.setAvaible_letters(letters);
+    }
+}
+
 void Server::receiveUserMove(int desc, Player &player){
-    char buffer[480];
+    char buffer[488];
     int x = 0;
     if((x = read(desc, buffer, sizeof(buffer))) < 0){
         perror("Couldn't receive user move");
@@ -292,7 +320,8 @@ void Server::receiveUserMove(int desc, Player &player){
 
         std::string player_name = seglist[1];
         player.setScore(seglist[2]);
-
+        player.setAvaible_letters(seglist[3]);
+        getNewLetters(player);
         player.setTurn(false);
 
         int z=0;
@@ -302,7 +331,7 @@ void Server::receiveUserMove(int desc, Player &player){
             }
         }
 
-        int p=3;
+        int p=4;
         for(int i=0; i<15; i++){
             for(int j=0; j<15; j++){
                 games[z].board.board[i][j]=seglist[p][0];
@@ -320,6 +349,9 @@ void Server::receiveUserMove(int desc, Player &player){
             for(int i=0; i<rooms[z].players.size(); i++){
                 if(rooms[z].players[i].getUsername() == player.getUsername()){
                     rooms[z].players[i].setTurn(false);
+                    rooms[z].players[i].setScore(seglist[2]);
+                    rooms[z].players[i].setAvaible_letters(seglist[3]);
+                    getNewLetters(rooms[z].players[i]);
 
                     if(i+1<rooms[z].players.size()){
                         rooms[z].players[i+1].setTurn(true);
@@ -327,14 +359,14 @@ void Server::receiveUserMove(int desc, Player &player){
                         rooms[z].players[0].setTurn(true);
                     }
                 }
-                std::cout << player.isTurn() << std::endl;
-                std:: cout<< rooms[z].players[i].getUsername() << " " <<  rooms[z].players[i].isTurn() << std :: endl;
             }
         }else{
             player.setTurn(true);
         }
     }
 }
+
+
 
 void Server::sendMoveToOtherPlayers(int desc, Player &player) {
     int z =0;
@@ -346,9 +378,10 @@ void Server::sendMoveToOtherPlayers(int desc, Player &player) {
 
     for(int i = 0; i<rooms[z].players.size(); i++) {
         if (rooms[z].players[i].getUsername() != player.getUsername() && rooms[z].players.size() > 1) {
-            sendBoard(rooms[z].players[i].getSocket_desc(), rooms[z].players[i], 2);
+            sendBoard(rooms[z].players[i].getSocket_desc(), player, 2);
             std::cout << "Send new board to: " << rooms[z].players[i].getUsername() << std::endl;
-
+        }else{
+            sendAvaibleLetters(desc, player, 1);
         }
     }
     //TODO Gracz gra samemu wiec kolejny ruch tez jest jego
