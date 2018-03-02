@@ -1,4 +1,4 @@
-# Install script for directory: /home/kamil/SieciKomputerowe/scrabble-server
+# Install script for directory: /home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -40,5 +40,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

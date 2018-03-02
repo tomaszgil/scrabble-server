@@ -437,12 +437,14 @@ void Server::quitRoom(int desc, Player &player) {
 
     if (game -> room.players.size() == 1) {
         game -> clear();
+        game -> room.setFreeSlots(game -> room.getFreeSlots() + 1);
     }
 
     for (int i = 0; i < game -> room.players.size(); i++) {
         if (game->room.players.at(i).getUsername() == player.getUsername()) {
             auto start = game -> room.players.begin();
             game -> room.players.erase(start + i);
+            game -> room.setFreeSlots(game -> room.getFreeSlots() + 1);
         }
     }
 
@@ -455,12 +457,14 @@ void Server::quitRoom(int desc, Player &player) {
 
     if (rooms[z].players.size() == 1) {
         rooms[z].players.clear();
+        rooms[z].setFreeSlots(4);
     }
 
     for(int i = 0; i<rooms[z].players.size(); i++) {
         if (rooms[z].players[i].getUsername() == player.getUsername()) {
             auto start = game -> room.players.begin();
             rooms[z].players.erase(start + i);
+            rooms[z].setFreeSlots(rooms[z].getFreeSlots() + 1);
         }
     }
 
