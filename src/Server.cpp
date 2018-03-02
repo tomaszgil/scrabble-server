@@ -223,13 +223,20 @@ void Server::sendBoard(int desc, Player &player, int code) {
 
 void Server::sendAvaibleLetters(int desc, Player &player, int x){
     std::string temp;
+    Game * game;
+
+    for(int i = 0; i < games.size(); i++){
+        if(games[i].room.getName() == player.getRoom()){
+            game = &(games[i]);
+        }
+    }
 
     if(x == 1){
         temp = "3_";
         temp = (temp + player.getAvaible_letters()).append("_");
     }else{
         for(int i=0; i<7; i++){
-            char letter = 'A' + rand()%26;
+            char letter = game -> takeLetter();
             temp = (temp + letter).append("_");
         }
     }
@@ -294,11 +301,21 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
     }
 }
 
-void getNewLetters(Player &player){
+void Server::getNewLetters(Player &player) {
+    Game * game;
     int index;
-    while((index = player.getAvaible_letters().find("0")) != -1){
+
+    for(int i = 0; i < games.size(); i++){
+        if(games[i].room.getName() == player.getRoom()){
+            game = &(games[i]);
+        }
+    }
+
+    std::cout << player.getAvaible_letters() << std::endl;
+    while((index = player.getAvaible_letters().find("0")) != -1) {
+        std::cout << index << std::endl;
         std::string letters = player.getAvaible_letters();
-        letters[index] = 'A' + rand()%26;
+        letters[index] = game -> takeLetter();
         player.setAvaible_letters(letters);
     }
 }
@@ -351,7 +368,7 @@ void Server::receiveUserMove(int desc, Player &player){
                     rooms[z].players[i].setTurn(false);
                     rooms[z].players[i].setScore(seglist[2]);
                     rooms[z].players[i].setAvaible_letters(seglist[3]);
-                    getNewLetters(rooms[z].players[i]);
+                    // getNewLetters(rooms[z].players[i]);
 
                     if(i+1<rooms[z].players.size()){
                         rooms[z].players[i+1].setTurn(true);
