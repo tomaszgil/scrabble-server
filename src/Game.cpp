@@ -8,6 +8,16 @@ Game::Game(Room room, Board board) {
     setupLetters();
 }
 
+void Game::clear() {
+    room.players.clear();
+    for (auto &i : board.board) {
+        for (char &j : i) {
+            j = '0';
+        }
+    }
+    setupLetters();
+}
+
 void Game::setupLetters() {
     struct cmp_char
     {
