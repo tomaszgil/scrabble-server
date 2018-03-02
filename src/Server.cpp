@@ -95,6 +95,8 @@ void *Server::handleClient(void *data){
     sendPlayersFromCurrentRoom(received_data.getSocket_desc(), received_data);
     receiveUserMove(received_data.getSocket_desc(), received_data);
     sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
+    quitRoom(received_data.getSocket_desc(), received_data);
+
 
     pthread_exit(NULL);
 }
@@ -401,6 +403,53 @@ void Server::sendMoveToOtherPlayers(int desc, Player &player) {
     }
     //TODO Gracz gra samemu wiec kolejny ruch tez jest jego
 
+}
+
+void Server::quitRoom(int desc, Player &player) {
+    player.setAvaible_letters("");
+    player.setScore("0");
+
+    Game * game;
+    for (int i = 0; i < games.size(); i++){
+        if(games[i].room.getName() == player.getRoom()){
+            game = &(games[i]);
+        }
+    }
+
+    if (game -> room.players.size() == 1) {
+        game -> clear();
+    }
+
+    for (int i = 0; i < game -> room.players.size(); i++) {
+        if (game->room.players.at(i).getUsername() == player.getUsername()) {
+            auto start = game -> room.players.begin();
+            game -> room.players.erase(start + i);
+        }
+    }
+
+    int z = 0;
+    for (; z< rooms.size(); z++){
+        if(rooms[z].getName() == player.getRoom()){
+            break;
+        }
+    }
+
+    if (rooms[z].players.size() == 1) {
+        rooms[z].players.clear();
+    }
+
+    for(int i = 0; i<rooms[z].players.size(); i++) {
+        if (rooms[z].players[i].getUsername() == player.getUsername()) {
+            auto start = game -> room.players.begin();
+            rooms[z].players.erase(start + i);
+        }
+    }
+
+    std::cout << "Quitting room " << player.getRoom() << std::endl;
+//    sendAvaibleRooms(desc);
+//    receiveSelectedRoom(desc, player);
+//    sendBoard(desc, player);
+//    sendAvaibleLetters(desc, player);
 }
 
 
