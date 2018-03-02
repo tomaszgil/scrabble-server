@@ -34,19 +34,19 @@ cmake_force:
 SHELL = /bin/sh
 
 # The CMake executable.
-CMAKE_COMMAND = /Applications/CLion.app/Contents/bin/cmake/bin/cmake
+CMAKE_COMMAND = /home/kamil/Downloads/clion-2017.3.3/bin/cmake/bin/cmake
 
 # The command to remove a file.
-RM = /Applications/CLion.app/Contents/bin/cmake/bin/cmake -E remove -f
+RM = /home/kamil/Downloads/clion-2017.3.3/bin/cmake/bin/cmake -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /Users/kamil/Projects/scrabble-online
+CMAKE_SOURCE_DIR = /home/kamil/SieciKomputerowe/scrabble-server
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /Users/kamil/Projects/scrabble-online/cmake-build-debug
+CMAKE_BINARY_DIR = /home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/server.dir/depend.make
@@ -59,16 +59,16 @@ include CMakeFiles/server.dir/flags.make
 
 CMakeFiles/server.dir/main.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/main.cpp.o -c /Users/kamil/Projects/scrabble-online/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/server.dir/main.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/main.cpp.o -c /home/kamil/SieciKomputerowe/scrabble-server/main.cpp
 
 CMakeFiles/server.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kamil/Projects/scrabble-online/main.cpp > CMakeFiles/server.dir/main.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/SieciKomputerowe/scrabble-server/main.cpp > CMakeFiles/server.dir/main.cpp.i
 
 CMakeFiles/server.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kamil/Projects/scrabble-online/main.cpp -o CMakeFiles/server.dir/main.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/SieciKomputerowe/scrabble-server/main.cpp -o CMakeFiles/server.dir/main.cpp.s
 
 CMakeFiles/server.dir/main.cpp.o.requires:
 
@@ -83,16 +83,16 @@ CMakeFiles/server.dir/main.cpp.o.provides.build: CMakeFiles/server.dir/main.cpp.
 
 CMakeFiles/server.dir/src/Server.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/Server.cpp.o: ../src/Server.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/Server.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Server.cpp.o -c /Users/kamil/Projects/scrabble-online/src/Server.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/server.dir/src/Server.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Server.cpp.o -c /home/kamil/SieciKomputerowe/scrabble-server/src/Server.cpp
 
 CMakeFiles/server.dir/src/Server.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Server.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kamil/Projects/scrabble-online/src/Server.cpp > CMakeFiles/server.dir/src/Server.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/SieciKomputerowe/scrabble-server/src/Server.cpp > CMakeFiles/server.dir/src/Server.cpp.i
 
 CMakeFiles/server.dir/src/Server.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Server.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kamil/Projects/scrabble-online/src/Server.cpp -o CMakeFiles/server.dir/src/Server.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/SieciKomputerowe/scrabble-server/src/Server.cpp -o CMakeFiles/server.dir/src/Server.cpp.s
 
 CMakeFiles/server.dir/src/Server.cpp.o.requires:
 
@@ -105,66 +105,42 @@ CMakeFiles/server.dir/src/Server.cpp.o.provides: CMakeFiles/server.dir/src/Serve
 CMakeFiles/server.dir/src/Server.cpp.o.provides.build: CMakeFiles/server.dir/src/Server.cpp.o
 
 
-CMakeFiles/server.dir/src/Room.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/src/Room.cpp.o: ../src/Room.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/Room.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Room.cpp.o -c /Users/kamil/Projects/scrabble-online/src/Room.cpp
+CMakeFiles/server.dir/src/Board.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Board.cpp.o: ../src/Board.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/server.dir/src/Board.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Board.cpp.o -c /home/kamil/SieciKomputerowe/scrabble-server/src/Board.cpp
 
-CMakeFiles/server.dir/src/Room.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Room.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kamil/Projects/scrabble-online/src/Room.cpp > CMakeFiles/server.dir/src/Room.cpp.i
+CMakeFiles/server.dir/src/Board.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Board.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/SieciKomputerowe/scrabble-server/src/Board.cpp > CMakeFiles/server.dir/src/Board.cpp.i
 
-CMakeFiles/server.dir/src/Room.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Room.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kamil/Projects/scrabble-online/src/Room.cpp -o CMakeFiles/server.dir/src/Room.cpp.s
+CMakeFiles/server.dir/src/Board.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Board.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/SieciKomputerowe/scrabble-server/src/Board.cpp -o CMakeFiles/server.dir/src/Board.cpp.s
 
-CMakeFiles/server.dir/src/Room.cpp.o.requires:
+CMakeFiles/server.dir/src/Board.cpp.o.requires:
 
-.PHONY : CMakeFiles/server.dir/src/Room.cpp.o.requires
+.PHONY : CMakeFiles/server.dir/src/Board.cpp.o.requires
 
-CMakeFiles/server.dir/src/Room.cpp.o.provides: CMakeFiles/server.dir/src/Room.cpp.o.requires
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Room.cpp.o.provides.build
-.PHONY : CMakeFiles/server.dir/src/Room.cpp.o.provides
+CMakeFiles/server.dir/src/Board.cpp.o.provides: CMakeFiles/server.dir/src/Board.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Board.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/src/Board.cpp.o.provides
 
-CMakeFiles/server.dir/src/Room.cpp.o.provides.build: CMakeFiles/server.dir/src/Room.cpp.o
-
-
-CMakeFiles/server.dir/src/Game.cpp.o: CMakeFiles/server.dir/flags.make
-CMakeFiles/server.dir/src/Game.cpp.o: ../src/Game.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/Game.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Game.cpp.o -c /Users/kamil/Projects/scrabble-online/src/Game.cpp
-
-CMakeFiles/server.dir/src/Game.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Game.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kamil/Projects/scrabble-online/src/Game.cpp > CMakeFiles/server.dir/src/Game.cpp.i
-
-CMakeFiles/server.dir/src/Game.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Game.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kamil/Projects/scrabble-online/src/Game.cpp -o CMakeFiles/server.dir/src/Game.cpp.s
-
-CMakeFiles/server.dir/src/Game.cpp.o.requires:
-
-.PHONY : CMakeFiles/server.dir/src/Game.cpp.o.requires
-
-CMakeFiles/server.dir/src/Game.cpp.o.provides: CMakeFiles/server.dir/src/Game.cpp.o.requires
-	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Game.cpp.o.provides.build
-.PHONY : CMakeFiles/server.dir/src/Game.cpp.o.provides
-
-CMakeFiles/server.dir/src/Game.cpp.o.provides.build: CMakeFiles/server.dir/src/Game.cpp.o
+CMakeFiles/server.dir/src/Board.cpp.o.provides.build: CMakeFiles/server.dir/src/Board.cpp.o
 
 
 CMakeFiles/server.dir/src/Player.cpp.o: CMakeFiles/server.dir/flags.make
 CMakeFiles/server.dir/src/Player.cpp.o: ../src/Player.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/Player.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Player.cpp.o -c /Users/kamil/Projects/scrabble-online/src/Player.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/server.dir/src/Player.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Player.cpp.o -c /home/kamil/SieciKomputerowe/scrabble-server/src/Player.cpp
 
 CMakeFiles/server.dir/src/Player.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Player.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/kamil/Projects/scrabble-online/src/Player.cpp > CMakeFiles/server.dir/src/Player.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/SieciKomputerowe/scrabble-server/src/Player.cpp > CMakeFiles/server.dir/src/Player.cpp.i
 
 CMakeFiles/server.dir/src/Player.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Player.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/kamil/Projects/scrabble-online/src/Player.cpp -o CMakeFiles/server.dir/src/Player.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/SieciKomputerowe/scrabble-server/src/Player.cpp -o CMakeFiles/server.dir/src/Player.cpp.s
 
 CMakeFiles/server.dir/src/Player.cpp.o.requires:
 
@@ -177,25 +153,75 @@ CMakeFiles/server.dir/src/Player.cpp.o.provides: CMakeFiles/server.dir/src/Playe
 CMakeFiles/server.dir/src/Player.cpp.o.provides.build: CMakeFiles/server.dir/src/Player.cpp.o
 
 
+CMakeFiles/server.dir/src/Game.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Game.cpp.o: ../src/Game.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/server.dir/src/Game.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Game.cpp.o -c /home/kamil/SieciKomputerowe/scrabble-server/src/Game.cpp
+
+CMakeFiles/server.dir/src/Game.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Game.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/SieciKomputerowe/scrabble-server/src/Game.cpp > CMakeFiles/server.dir/src/Game.cpp.i
+
+CMakeFiles/server.dir/src/Game.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Game.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/SieciKomputerowe/scrabble-server/src/Game.cpp -o CMakeFiles/server.dir/src/Game.cpp.s
+
+CMakeFiles/server.dir/src/Game.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/src/Game.cpp.o.requires
+
+CMakeFiles/server.dir/src/Game.cpp.o.provides: CMakeFiles/server.dir/src/Game.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Game.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/src/Game.cpp.o.provides
+
+CMakeFiles/server.dir/src/Game.cpp.o.provides.build: CMakeFiles/server.dir/src/Game.cpp.o
+
+
+CMakeFiles/server.dir/src/Room.cpp.o: CMakeFiles/server.dir/flags.make
+CMakeFiles/server.dir/src/Room.cpp.o: ../src/Room.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/server.dir/src/Room.cpp.o"
+	/usr/bin/c++  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/server.dir/src/Room.cpp.o -c /home/kamil/SieciKomputerowe/scrabble-server/src/Room.cpp
+
+CMakeFiles/server.dir/src/Room.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/server.dir/src/Room.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/kamil/SieciKomputerowe/scrabble-server/src/Room.cpp > CMakeFiles/server.dir/src/Room.cpp.i
+
+CMakeFiles/server.dir/src/Room.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/server.dir/src/Room.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/kamil/SieciKomputerowe/scrabble-server/src/Room.cpp -o CMakeFiles/server.dir/src/Room.cpp.s
+
+CMakeFiles/server.dir/src/Room.cpp.o.requires:
+
+.PHONY : CMakeFiles/server.dir/src/Room.cpp.o.requires
+
+CMakeFiles/server.dir/src/Room.cpp.o.provides: CMakeFiles/server.dir/src/Room.cpp.o.requires
+	$(MAKE) -f CMakeFiles/server.dir/build.make CMakeFiles/server.dir/src/Room.cpp.o.provides.build
+.PHONY : CMakeFiles/server.dir/src/Room.cpp.o.provides
+
+CMakeFiles/server.dir/src/Room.cpp.o.provides.build: CMakeFiles/server.dir/src/Room.cpp.o
+
+
 # Object files for target server
 server_OBJECTS = \
 "CMakeFiles/server.dir/main.cpp.o" \
 "CMakeFiles/server.dir/src/Server.cpp.o" \
-"CMakeFiles/server.dir/src/Room.cpp.o" \
+"CMakeFiles/server.dir/src/Board.cpp.o" \
+"CMakeFiles/server.dir/src/Player.cpp.o" \
 "CMakeFiles/server.dir/src/Game.cpp.o" \
-"CMakeFiles/server.dir/src/Player.cpp.o"
+"CMakeFiles/server.dir/src/Room.cpp.o"
 
 # External object files for target server
 server_EXTERNAL_OBJECTS =
 
 server: CMakeFiles/server.dir/main.cpp.o
 server: CMakeFiles/server.dir/src/Server.cpp.o
-server: CMakeFiles/server.dir/src/Room.cpp.o
-server: CMakeFiles/server.dir/src/Game.cpp.o
+server: CMakeFiles/server.dir/src/Board.cpp.o
 server: CMakeFiles/server.dir/src/Player.cpp.o
+server: CMakeFiles/server.dir/src/Game.cpp.o
+server: CMakeFiles/server.dir/src/Room.cpp.o
 server: CMakeFiles/server.dir/build.make
 server: CMakeFiles/server.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable server"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable server"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/server.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -205,9 +231,10 @@ CMakeFiles/server.dir/build: server
 
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/main.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Server.cpp.o.requires
-CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Room.cpp.o.requires
-CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Game.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Board.cpp.o.requires
 CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Player.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Game.cpp.o.requires
+CMakeFiles/server.dir/requires: CMakeFiles/server.dir/src/Room.cpp.o.requires
 
 .PHONY : CMakeFiles/server.dir/requires
 
@@ -216,6 +243,6 @@ CMakeFiles/server.dir/clean:
 .PHONY : CMakeFiles/server.dir/clean
 
 CMakeFiles/server.dir/depend:
-	cd /Users/kamil/Projects/scrabble-online/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/kamil/Projects/scrabble-online /Users/kamil/Projects/scrabble-online /Users/kamil/Projects/scrabble-online/cmake-build-debug /Users/kamil/Projects/scrabble-online/cmake-build-debug /Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles/server.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/kamil/SieciKomputerowe/scrabble-server /home/kamil/SieciKomputerowe/scrabble-server /home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug /home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug /home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/server.dir/depend
 
