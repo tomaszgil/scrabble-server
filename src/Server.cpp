@@ -298,18 +298,15 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
         }
     }
 
+    while(temp.length() < 104){
+        temp.append("0");
+    }
+
     const char *cstr = temp.c_str();
 
     std::cout<<strlen(cstr)<<std::endl;
 
-    int size =0;
-
-    if(x == 1)
-        size = 104;
-    else
-        size = 102;
-
-    if(write(desc, cstr, size)<0){
+    if(write(desc, cstr, strlen(cstr))<0){
         printf("%d", errno);
         std::cout<<"Couldn't send players"<<std::endl;
     }else{
