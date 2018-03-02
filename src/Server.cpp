@@ -93,10 +93,27 @@ void *Server::handleClient(void *data){
     sendBoard(received_data.getSocket_desc(), received_data);
     sendAvaibleLetters(received_data.getSocket_desc(), received_data);
     sendPlayersFromCurrentRoom(received_data.getSocket_desc(), received_data);
-    receiveUserMove(received_data.getSocket_desc(), received_data);
-    sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
+   // receiveUserMove(received_data.getSocket_desc(), received_data);
+   // sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
 
-    pthread_exit(NULL);
+    char buffer[2];
+    int x =0;
+    while(true){
+        sendPlayersFromCurrentRoom(received_data.getSocket_desc(), received_data, 1 );
+        if((x = read(received_data.getSocket_desc(), buffer, sizeof(buffer))) < 0){
+            perror("Couldn't receive data");
+            printf("%d", errno);
+        }else if(x!=0){
+            if(buffer[0] == '1'){
+                std::cout<<"WYKONALEM SIE"<<std::endl;
+                receiveUserMove(received_data.getSocket_desc(), received_data);
+                sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
+            }else if(buffer[0] == 'x'){
+                pthread_exit(NULL);
+            }
+        }
+    }
+
 }
 
 
@@ -114,7 +131,6 @@ void Server::acceptConnection() {
         pthread_create(&thread_id, NULL, handleClient, (void *)&players.back());
     }
 }
-
 
 void Server::receiveUsername(int desc, Player &player) {
     char buffor[50];
@@ -233,9 +249,6 @@ void Server::sendAvaibleLetters(int desc, Player &player, int x){
             temp = (temp + letter).append("_");
         }
     }
-    
-    std::cout<< "WYSYLAM " << temp << std::endl;
-
 
     if(!sendStringToClient(desc,temp)){
         std::cout << "Couldn't send letters" << std::endl;
@@ -269,22 +282,25 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
         }else{
             message = "0";
         }
-        temp.append(message);
+        temp.append(message).append("_").append(std::to_string(foundUsers)).append("_");
     }else{
         if(x == 1){
-            temp = std::to_string(x).append("_").append(std::to_string(foundUsers)).append("_").append(message);
+            temp = std::to_string(x).append("_").append(std::to_string(foundUsers)).append("_").append(message).append("_");
         }else{
-            temp = std::to_string(foundUsers).append("_").append(message);
+            temp = std::to_string(foundUsers).append("_").append(message).append("_");
         }
     }
 
     const char *cstr = temp.c_str();
+
+    std::cout<<strlen(cstr)<<std::endl;
+
     int size =0;
 
     if(x == 1)
-        size = 102;
+        size = 104;
     else
-        size = 100;
+        size = 102;
 
     if(write(desc, cstr, size)<0){
         printf("%d", errno);
@@ -318,9 +334,9 @@ void Server::receiveUserMove(int desc, Player &player){
             seglist.push_back(segment);
         }
 
-        std::string player_name = seglist[1];
-        player.setScore(seglist[2]);
-        player.setAvaible_letters(seglist[3]);
+        std::string player_name = seglist[0];
+        player.setScore(seglist[1]);
+        player.setAvaible_letters(seglist[2]);
         getNewLetters(player);
         player.setTurn(false);
 
@@ -331,7 +347,7 @@ void Server::receiveUserMove(int desc, Player &player){
             }
         }
 
-        int p=4;
+        int p=3;
         for(int i=0; i<15; i++){
             for(int j=0; j<15; j++){
                 games[z].board.board[i][j]=seglist[p][0];
@@ -349,8 +365,8 @@ void Server::receiveUserMove(int desc, Player &player){
             for(int i=0; i<rooms[z].players.size(); i++){
                 if(rooms[z].players[i].getUsername() == player.getUsername()){
                     rooms[z].players[i].setTurn(false);
-                    rooms[z].players[i].setScore(seglist[2]);
-                    rooms[z].players[i].setAvaible_letters(seglist[3]);
+                    rooms[z].players[i].setScore(seglist[1]);
+                    rooms[z].players[i].setAvaible_letters(seglist[2]);
                     getNewLetters(rooms[z].players[i]);
 
                     if(i+1<rooms[z].players.size()){
@@ -384,8 +400,6 @@ void Server::sendMoveToOtherPlayers(int desc, Player &player) {
             sendAvaibleLetters(desc, player, 1);
         }
     }
-    //TODO Gracz gra samemu wiec kolejny ruch tez jest jego
-
 }
 
 
