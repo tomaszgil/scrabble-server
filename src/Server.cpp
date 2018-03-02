@@ -106,7 +106,6 @@ void *Server::handleClient(void *data){
             printf("%d", errno);
         }else if(x!=0){
             if(buffer[0] == '1'){
-                std::cout<<"WYKONALEM SIE"<<std::endl;
                 receiveUserMove(received_data.getSocket_desc(), received_data);
                 sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
             } else if (buffer[0] == '2') {
@@ -307,18 +306,13 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
         }
     }
 
+    while(temp.length() < 104){
+        temp.append("0");
+    }
+
     const char *cstr = temp.c_str();
-
-    std::cout<<strlen(cstr)<<std::endl;
-
-    int size =0;
-
-    if(x == 1)
-        size = 104;
-    else
-        size = 102;
-
-    if(write(desc, cstr, size)<0){
+    
+    if(write(desc, cstr, strlen(cstr))<0){
         printf("%d", errno);
         std::cout<<"Couldn't send players"<<std::endl;
     }else{
