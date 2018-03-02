@@ -10,8 +10,13 @@ public:
     std::vector<Player> players;
     Room room;
     Board board;
+    std::vector<char> letters;
 
     Game(Room room, Board board);
+    char takeLetter();
+
+private:
+    void setupLetters();
 };
 
 

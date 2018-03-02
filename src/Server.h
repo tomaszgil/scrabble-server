@@ -35,6 +35,7 @@ public:
     void run();
     void createRooms();
     void createGames();
+    static void getNewLetters(Player &player);
     static void *handleClient(void *data);
     static void receiveUsername(int desc, Player &player);
     static void receiveSelectedRoom(int desc, Player &player);
