@@ -4,13 +4,14 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/kamil/Projects/scrabble-online/main.cpp" "/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles/server.dir/main.cpp.o"
-  "/Users/kamil/Projects/scrabble-online/src/Game.cpp" "/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles/server.dir/src/Game.cpp.o"
-  "/Users/kamil/Projects/scrabble-online/src/Player.cpp" "/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles/server.dir/src/Player.cpp.o"
-  "/Users/kamil/Projects/scrabble-online/src/Room.cpp" "/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles/server.dir/src/Room.cpp.o"
-  "/Users/kamil/Projects/scrabble-online/src/Server.cpp" "/Users/kamil/Projects/scrabble-online/cmake-build-debug/CMakeFiles/server.dir/src/Server.cpp.o"
+  "/home/kamil/SieciKomputerowe/scrabble-server/main.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/main.cpp.o"
+  "/home/kamil/SieciKomputerowe/scrabble-server/src/Board.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Board.cpp.o"
+  "/home/kamil/SieciKomputerowe/scrabble-server/src/Game.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Game.cpp.o"
+  "/home/kamil/SieciKomputerowe/scrabble-server/src/Player.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Player.cpp.o"
+  "/home/kamil/SieciKomputerowe/scrabble-server/src/Room.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Room.cpp.o"
+  "/home/kamil/SieciKomputerowe/scrabble-server/src/Server.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Server.cpp.o"
   )
-set(CMAKE_CXX_COMPILER_ID "AppleClang")
+set(CMAKE_CXX_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
