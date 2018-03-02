@@ -54,4 +54,12 @@ void Player::setTurn(bool turn) {
     Player::turn = turn;
 }
 
+const std::string &Player::getAvaible_letters() const {
+    return avaible_letters;
+}
+
+void Player::setAvaible_letters(const std::string &avaible_letters) {
+    Player::avaible_letters = avaible_letters;
+}
+
 

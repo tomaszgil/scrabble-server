@@ -16,6 +16,12 @@ class Player {
     socklen_t player_struct_size;
     std::string username;
     std::string score;
+public:
+    std::string avaible_letters;
+    const std::string &getAvaible_letters() const;
+    void setAvaible_letters(const std::string &avaible_letters);
+
+private:
     int socket_desc;
     std::string room;
     bool turn;

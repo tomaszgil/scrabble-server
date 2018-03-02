@@ -40,7 +40,7 @@ public:
     static void receiveSelectedRoom(int desc, Player &player);
     static void sendAvaibleRooms(int desc);
     static void sendBoard(int desc, Player &player, int code = 0);
-    static void sendAvaibleLetters(int desc, Player &player);
+    static void sendAvaibleLetters(int desc, Player &player, int code =0);
     static bool sendStringToClient(int desc, std::string &message, int size =0);
     static void sendPlayersFromCurrentRoom(int desc, Player &player, int code =0);
     static void receiveUserMove(int desc, Player &player);
