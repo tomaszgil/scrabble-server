@@ -110,7 +110,7 @@ void *Server::handleClient(void *data){
                 sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
             } else if (buffer[0] == '2') {
                 quitRoom(received_data.getSocket_desc(), received_data);
-                usleep(4*miliseconds);
+               // usleep(4*miliseconds);
                 sendAvaibleRooms(received_data.getSocket_desc());
                 receiveSelectedRoom(received_data.getSocket_desc(), received_data);
                 sendBoard(received_data.getSocket_desc(), received_data);
