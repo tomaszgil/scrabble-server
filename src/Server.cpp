@@ -311,9 +311,7 @@ void Server::getNewLetters(Player &player) {
         }
     }
 
-    std::cout << player.getAvaible_letters() << std::endl;
     while((index = player.getAvaible_letters().find("0")) != -1) {
-        std::cout << index << std::endl;
         std::string letters = player.getAvaible_letters();
         letters[index] = game -> takeLetter();
         player.setAvaible_letters(letters);
