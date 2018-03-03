@@ -10,11 +10,10 @@ Game::Game(Room room, Board board) {
 
 void Game::clear() {
     room.players.clear();
-    for (auto &i : board.board) {
-        for (char &j : i) {
-            j = '0';
+    for(int i =0; i<15; i++)
+        for(int j=0; j<15; j++) {
+            board.board[i][j]='0';
         }
-    }
     setupLetters();
 }
 

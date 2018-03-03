@@ -525,10 +525,8 @@ void Server::quitRoom(int desc, Player &player) {
         if (rooms[z].players[i].getUsername() == player.getUsername()) {
             std::cout<<"Krok 6 " << std::endl;
 
-            auto start = game -> room.players.begin();
+            auto start = rooms[z].players.begin();
             std::cout<<"Krok 7 " << std::endl;
-
-            rooms[z].players[i].getUsername();
             rooms[z].players.erase(start + i);
             std::cout<<"Krok 8 " << std::endl;
 
