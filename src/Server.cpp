@@ -174,6 +174,17 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
         perror("Couldn't receive selected room");
         printf("%d", errno);
     }else{
+        int z =0;
+        for(; z<games.size(); z++){
+            if(games[z].room.getName() == player.getRoom()){
+                break;
+            }
+        }
+
+
+
+
+
         for(int i=0; i< rooms.size(); i++){
             if(rooms[i].getName()==buffor){
                 if(rooms[i].players.empty() ) {
@@ -324,6 +335,7 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
     if(write(desc, cstr, strlen(cstr))<0){
         printf("%d", errno);
         std::cout<<"Couldn't send players"<<std::endl;
+        pthread_exit(NULL);
     }else{
         std::cout<<"Players send"<<std::endl;
     }
@@ -410,8 +422,6 @@ void Server::receiveUserMove(int desc, Player &player){
     }
 }
 
-
-
 void Server::sendMoveToOtherPlayers(int desc, Player &player) {
     int z =0;
     for(; z< rooms.size(); z++){
@@ -477,16 +487,16 @@ void Server::quitRoom(int desc, Player &player) {
     for(int i = 0; i<rooms[z].players.size(); i++) {
         std::cout<< rooms[z].players[i].getUsername() << std::endl;
         if (rooms[z].players[i].getUsername() == player.getUsername()) {
-            std::cout<<"Krok 5 " << std::endl;
-
-            auto start = game -> room.players.begin();
             std::cout<<"Krok 6 " << std::endl;
 
-            rooms[z].players.erase(start + i);
+            auto start = game -> room.players.begin();
             std::cout<<"Krok 7 " << std::endl;
 
-            rooms[z].setFreeSlots(rooms[z].getFreeSlots() + 1);
+            rooms[z].players.erase(start + i);
             std::cout<<"Krok 8 " << std::endl;
+
+            rooms[z].setFreeSlots(rooms[z].getFreeSlots() + 1);
+            std::cout<<"Krok 9 " << std::endl;
 
         }
     }
