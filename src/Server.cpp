@@ -424,6 +424,7 @@ void Server::sendMoveToOtherPlayers(int desc, Player &player) {
 void Server::quitRoom(int desc, Player &player) {
     player.setAvaible_letters("");
     player.setScore("0");
+    player.setTurn(false);
 
     Game * game;
     for (int i = 0; i < games.size(); i++){
