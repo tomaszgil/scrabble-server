@@ -1,6 +1,8 @@
 #include <sstream>
+#include <mutex>
 #include "Server.h"
 
+std::mutex letters_mutex;
 std::vector<Room> Server::rooms;
 std::vector<Game> Server::games;
 std::vector<Player> Server::players;
@@ -109,6 +111,8 @@ void *Server::handleClient(void *data){
                 sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
             }else if(buffer[0] == 'x'){
                 pthread_exit(NULL);
+            }else if(buffer[0] == '3'){
+                swapLetters(received_data.getSocket_desc(), received_data);
             }
         }
     }
@@ -409,6 +413,44 @@ void Server::sendMoveToOtherPlayers(int desc, Player &player) {
         }else{
             sendAvaibleLetters(desc, player, 1);
         }
+    }
+}
+
+void Server::swapLetters(int desc, Player &player) {
+    char buffer[9]; // TODO check 8
+    int x = 0;
+    Game * game;
+
+    for(int i = 0; i < games.size(); i++){
+        if(games[i].room.getName() == player.getRoom()){
+            game = &(games[i]);
+        }
+    }
+
+    if((x = read(desc, buffer, sizeof(buffer))) < 0){
+        perror("Couldn't receive user letters");
+        printf("%d", errno);
+    }else if(x!=0) {
+        std::stringstream message(buffer);
+        std::string segment;
+
+        while (std::getline(message, segment)) {}
+        segment.pop_back();
+        std::cout << segment << std::endl;
+
+        letters_mutex.lock();
+        for (int i = 0; i < 7; i++) {
+            char tmp = segment[i];
+            if (tmp != '0') {
+                segment[i] = game -> takeLetter();
+                game -> insertLetter(tmp);
+            }
+        }
+
+        std::cout << segment << std::endl;
+        player.setAvaible_letters(segment);
+        letters_mutex.unlock();
+        sendAvaibleLetters(desc, player, 0);
     }
 }
 

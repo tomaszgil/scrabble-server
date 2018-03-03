@@ -70,3 +70,7 @@ char Game::takeLetter() {
     return letter;
 }
 
+void Game::insertLetter(char letter) {
+    letters.push_back(letter);
+}
+
