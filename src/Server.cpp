@@ -417,7 +417,7 @@ void Server::sendMoveToOtherPlayers(int desc, Player &player) {
 }
 
 void Server::swapLetters(int desc, Player &player) {
-    char buffer[9]; // TODO check 8
+    char buffer[9];
     int x = 0;
     Game * game;
 
@@ -436,7 +436,6 @@ void Server::swapLetters(int desc, Player &player) {
 
         while (std::getline(message, segment)) {}
         segment.pop_back();
-        std::cout << segment << std::endl;
 
         letters_mutex.lock();
         for (int i = 0; i < 7; i++) {
@@ -446,11 +445,11 @@ void Server::swapLetters(int desc, Player &player) {
                 game -> insertLetter(tmp);
             }
         }
-
-        std::cout << segment << std::endl;
         player.setAvaible_letters(segment);
         letters_mutex.unlock();
-        sendAvaibleLetters(desc, player, 0);
+
+        std::string prefix = "3_";
+        sendStringToClient(desc, prefix.append(segment));
     }
 }
 
