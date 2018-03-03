@@ -96,19 +96,21 @@ void *Server::handleClient(void *data){
    // receiveUserMove(received_data.getSocket_desc(), received_data);
    // sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
 
-    char buffer[2];
+    char buffer[2] = {'0', '0'};
     int x =0;
     unsigned int miliseconds = 1000;
     while(true){
+//        usleep(miliseconds);
         sendPlayersFromCurrentRoom(received_data.getSocket_desc(), received_data, 1 );
         if((x = read(received_data.getSocket_desc(), buffer, sizeof(buffer))) < 0){
             perror("Couldn't receive data");
             printf("%d", errno);
-        }else if(x!=0){
-            if(buffer[0] == '1'){
+        }else if(x!=0 && strlen(buffer) > 0 && buffer[0] != '0' && buffer[1] != '0'){
+            if(buffer[0] == '1' && buffer[1] == '_'){
                 receiveUserMove(received_data.getSocket_desc(), received_data);
                 sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
-            } else if (buffer[0] == '2') {
+            } else if (buffer[0] == '2' && buffer[1] == '_') {
+                std::cout<<"BYLEM"<<std::endl;
                 quitRoom(received_data.getSocket_desc(), received_data);
                // usleep(4*miliseconds);
                 sendAvaibleRooms(received_data.getSocket_desc());
@@ -182,6 +184,12 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
                 rooms[i].addPlayer(player);
                 rooms[i].setFreeSlots(rooms[i].getFreeSlots()-1);
                 std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom() << std::endl;
+
+                for(int j=0; j<rooms[i].players.size(); j++){
+                    if(rooms[i].players[j].getUsername() == player.getUsername()){
+                        rooms[i].players[j].setRoom(rooms[i].getName());
+                    }
+                }
 
                 // Send info to other users in room
                 for(int j=0; j<rooms[i].players.size(); j++){
@@ -273,8 +281,8 @@ void Server::sendAvaibleLetters(int desc, Player &player, int x){
 }
 
 void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
-    std::string message;
-    std::string temp;
+    std::string message ="";
+    std::string temp= "";
 
     int foundUsers = 0;
     int z=0;
@@ -300,7 +308,7 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
         temp.append(message).append("_").append(std::to_string(foundUsers)).append("_");
     }else{
         if(x == 1){
-            temp = std::to_string(x).append("_").append(std::to_string(foundUsers)).append("_").append(message).append("_");
+            temp = temp.append("1_").append(std::to_string(foundUsers)).append("_").append(message).append("_");
         }else{
             temp = std::to_string(foundUsers).append("_").append(message).append("_");
         }
@@ -311,7 +319,8 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
     }
 
     const char *cstr = temp.c_str();
-    
+    std::cout<<cstr<<std::endl;
+
     if(write(desc, cstr, strlen(cstr))<0){
         printf("%d", errno);
         std::cout<<"Couldn't send players"<<std::endl;
@@ -431,11 +440,13 @@ void Server::quitRoom(int desc, Player &player) {
             game = &(games[i]);
         }
     }
-
+    std::cout<<"Krok 1 " << std::endl;
     if (game -> room.players.size() == 1) {
         game -> clear();
         game -> room.setFreeSlots(game -> room.getFreeSlots() + 1);
     }
+
+    std::cout<<"Krok 2 " << std::endl;
 
     for (int i = 0; i < game -> room.players.size(); i++) {
         if (game->room.players.at(i).getUsername() == player.getUsername()) {
@@ -444,6 +455,8 @@ void Server::quitRoom(int desc, Player &player) {
             game -> room.setFreeSlots(game -> room.getFreeSlots() + 1);
         }
     }
+    std::cout<<"Krok 3 " << std::endl;
+
 
     int z = 0;
     for (; z< rooms.size(); z++){
@@ -452,16 +465,29 @@ void Server::quitRoom(int desc, Player &player) {
         }
     }
 
+    std::cout<<"Krok 4 " << std::endl;
+
     if (rooms[z].players.size() == 1) {
         rooms[z].players.clear();
         rooms[z].setFreeSlots(4);
     }
+    std::cout<<"Krok 5 " << std::endl;
+
 
     for(int i = 0; i<rooms[z].players.size(); i++) {
+        std::cout<< rooms[z].players[i].getUsername() << std::endl;
         if (rooms[z].players[i].getUsername() == player.getUsername()) {
+            std::cout<<"Krok 5 " << std::endl;
+
             auto start = game -> room.players.begin();
+            std::cout<<"Krok 6 " << std::endl;
+
             rooms[z].players.erase(start + i);
+            std::cout<<"Krok 7 " << std::endl;
+
             rooms[z].setFreeSlots(rooms[z].getFreeSlots() + 1);
+            std::cout<<"Krok 8 " << std::endl;
+
         }
     }
 
