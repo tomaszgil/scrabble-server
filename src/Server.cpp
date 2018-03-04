@@ -261,7 +261,6 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
 
 void Server::sendBoard(int desc, Player &player, int code) {
     std::string temp;
-    games[0].board.board[2][3]='A';
     int length=480;
 
     if(code == 2){
@@ -273,6 +272,7 @@ void Server::sendBoard(int desc, Player &player, int code) {
     int z =0;
     for(; z<games.size(); z++){
         if(games[z].room.getName() == player.getRoom()){
+            std::cout << &(games[z]) << std::endl;
             break;
         }
     }
@@ -506,9 +506,10 @@ void Server::quitRoom(int desc, Player &player) {
             game = &(games[i]);
         }
     }
+
     if (game -> room.players.size() == 1) {
         game -> clear();
-        game -> room.setFreeSlots(game -> room.getFreeSlots() + 1);
+        game -> room.setFreeSlots(4);
     }
 
 
@@ -528,6 +529,8 @@ void Server::quitRoom(int desc, Player &player) {
     }
 
     if (rooms[z].players.size() == 1) {
+        game -> clear();
+        game -> room.setFreeSlots(4);
         rooms[z].players.clear();
         rooms[z].setFreeSlots(4);
     }
