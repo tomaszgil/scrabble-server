@@ -272,7 +272,6 @@ void Server::sendBoard(int desc, Player &player, int code) {
     int z =0;
     for(; z<games.size(); z++){
         if(games[z].room.getName() == player.getRoom()){
-            std::cout << &(games[z]) << std::endl;
             break;
         }
     }
