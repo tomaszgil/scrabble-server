@@ -3,6 +3,7 @@
 #include "Server.h"
 
 std::mutex letters_mutex;
+std::mutex player_mutex;
 std::vector<Room> Server::rooms;
 std::vector<Game> Server::games;
 std::vector<Player> Server::players;
@@ -221,7 +222,10 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
 
             for(int i=0; i< rooms.size(); i++){
                 if(rooms[i].getName()==buffor){
+                    player_mutex.lock();
+
                     if(rooms[i].players.size()==4){
+                        player_mutex.unlock();
                         memset(buffor,'0',15);
                         std::string x ="x";
                         sendStringToClient(desc, x, 1);
@@ -237,6 +241,7 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
                         player.setRoom(rooms[i].getName());
                         rooms[i].addPlayer(player);
                         rooms[i].setFreeSlots(rooms[i].getFreeSlots()-1);
+                        player_mutex.unlock();
                         std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom() << std::endl;
 
                         for(int j=0; j<rooms[i].players.size(); j++){
@@ -536,6 +541,7 @@ void Server::swapLetters(int desc, Player &player) {
 }
 
 void Server::quitRoom(int desc, Player &player) {
+    player_mutex.lock();
     player.setAvaible_letters("");
     player.setScore("0");
     player.setTurn(false);
@@ -584,6 +590,8 @@ void Server::quitRoom(int desc, Player &player) {
             rooms[z].setFreeSlots(rooms[z].getFreeSlots() + 1);
         }
     }
+
+    player_mutex.unlock();
 
     for(int i=0; i<rooms[z].players.size(); i++){
         std::cout<<rooms[z].players[i].getUsername()<<std::endl;
