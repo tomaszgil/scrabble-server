@@ -97,8 +97,6 @@ void *Server::handleClient(void *data){
     sendBoard(received_data.getSocket_desc(), received_data);
     sendAvaibleLetters(received_data.getSocket_desc(), received_data);
     sendPlayersFromCurrentRoom(received_data.getSocket_desc(), received_data);
-   // receiveUserMove(received_data.getSocket_desc(), received_data);
-   // sendMoveToOtherPlayers(received_data.getSocket_desc(), received_data);
 
     char buffer[2] = {'0', '0'};
     int x =0;
@@ -156,16 +154,6 @@ void Server::acceptConnection() {
         pthread_t thread_id;
         pthread_create(&thread_id, NULL, handleClient, (void *)&players.back());
     }
-
-//    while((client_desc = accept(this->socket_desc, (struct sockaddr*)&player_tmp, &player_tmp_size))> 0 || errno != EWOULDBLOCK){
-//
-//        players.emplace_back(player_tmp, player_tmp_size, client_desc);
-//
-//        pthread_data data ={client_desc, players.back()};
-//
-//        pthread_t thread_id;
-//        pthread_create(&thread_id, NULL, handleClient, (void *)&players.back());
-//    }
 }
 
 void Server::receiveUsername(int desc, Player &player) {
@@ -178,8 +166,13 @@ void Server::receiveUsername(int desc, Player &player) {
             printf("%d", errno);
         }
     }else{
-        player.setUsername(buffor);
-        std:: cout << "Connected user: " << player.getUsername() << std::endl;
+        if(buffor[0] =='x'){
+            std:: cout << "Client logged out" << std::endl;
+            pthread_exit(NULL);
+        }else{
+            player.setUsername(buffor);
+            std:: cout << "Connected user: " << player.getUsername() << std::endl;
+        }
     }
 }
 
@@ -209,61 +202,66 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
             printf("%d", errno);
         }
     }else{
-        int z =0;
-        for(; z<games.size(); z++){
-            if(games[z].room.getName() == player.getRoom()){
-                break;
-            }
-        }
-        if(buffor[0]=='0'){
-            receiveSelectedRoom(desc, player);
+        if(buffor[0] == 'x'){
+            std:: cout << "Client logged out" << std::endl;
+            pthread_exit(NULL);
         }else{
-            std::cout<<buffor[0]<<std::endl;
-
-            for(int i=0; i< rooms.size(); i++){
-                if(rooms[i].getName()==buffor){
-                    player_mutex.lock();
-
-                    if(rooms[i].players.size()==4){
-                        player_mutex.unlock();
-                        memset(buffor,'0',15);
-                        std::string x ="x";
-                        sendStringToClient(desc, x, 1);
-                        sendAvaibleRooms(desc);
-                        receiveSelectedRoom(desc, player);
-                        break;
-                    }
-                    else{
-                        if(rooms[i].players.empty() ) {
-                            player.setTurn(true);
-                        }
-
-                        player.setRoom(rooms[i].getName());
-                        rooms[i].addPlayer(player);
-                        rooms[i].setFreeSlots(rooms[i].getFreeSlots()-1);
-                        player_mutex.unlock();
-                        std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom() << std::endl;
-
-                        for(int j=0; j<rooms[i].players.size(); j++){
-                            if(rooms[i].players[j].getUsername() == player.getUsername()){
-                                rooms[i].players[j].setRoom(rooms[i].getName());
-                                std::string code = "o";
-                                sendStringToClient(desc, code, 1);
-                            }
-                        }
-
-                        // Send info to other users in room
-                        for(int j=0; j<rooms[i].players.size(); j++){
-                            if(rooms[i].players[j].getUsername() != player.getUsername()){
-                                sendPlayersFromCurrentRoom(rooms[i].players[j].getSocket_desc(), rooms[i].players[j], 1);
-                                std::cout<<"Sending info about new player to: " << rooms[i].players[j].getUsername() <<std::endl;
-                            }
-                        }
-                    }
+            int z =0;
+            for(; z<games.size(); z++){
+                if(games[z].room.getName() == player.getRoom()){
+                    break;
                 }
-
             }
+            if(buffor[0]=='0'){
+                receiveSelectedRoom(desc, player);
+            }else{
+                for(int i=0; i< rooms.size(); i++){
+                    if(rooms[i].getName()==buffor){
+                        player_mutex.lock();
+
+                        if(rooms[i].players.size()==4){
+                            player_mutex.unlock();
+                            memset(buffor,'0',15);
+                            std::string x ="x";
+                            sendStringToClient(desc, x, 1);
+                            sendAvaibleRooms(desc);
+                            receiveSelectedRoom(desc, player);
+                            break;
+                        }
+                        else{
+                            if(rooms[i].players.empty() ) {
+                                player.setTurn(true);
+                            }
+
+                            player.setRoom(rooms[i].getName());
+                            rooms[i].addPlayer(player);
+                            rooms[i].setFreeSlots(rooms[i].getFreeSlots()-1);
+                            player_mutex.unlock();
+                            std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom() << std::endl;
+
+                            for(int j=0; j<rooms[i].players.size(); j++){
+                                if(rooms[i].players[j].getUsername() == player.getUsername()){
+                                    rooms[i].players[j].setRoom(rooms[i].getName());
+                                    std::string code = "o";
+                                    sendStringToClient(desc, code, 1);
+                                }
+                            }
+
+                            // Send info to other users in room
+                            for(int j=0; j<rooms[i].players.size(); j++){
+                                if(rooms[i].players[j].getUsername() != player.getUsername()){
+                                    sendPlayersFromCurrentRoom(rooms[i].players[j].getSocket_desc(), rooms[i].players[j], 1);
+                                    std::cout<<"Sending info about new player to: " << rooms[i].players[j].getUsername() <<std::endl;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+
         }
+
     }
 
 }
@@ -385,7 +383,6 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
     }
 
     const char *cstr = temp.c_str();
-    std::cout<<cstr<<std::endl;
 
     if(write(desc, cstr, strlen(cstr))<0){
         printf("%d", errno);
@@ -597,7 +594,6 @@ void Server::quitRoom(int desc, Player &player) {
         std::cout<<rooms[z].players[i].getUsername()<<std::endl;
         if(rooms[z].players[i].getUsername() != player.getUsername()){
             sendPlayersFromCurrentRoom(rooms[z].players[i].getSocket_desc(), rooms[z].players[i], 1);
-            std::cout<<"WYKONALEM SIE" << std::endl;
         }
     }
 
