@@ -6,35 +6,39 @@
 
 #IncludeRegexTransform: 
 
-/home/kamil/SieciKomputerowe/scrabble-server/main.cpp
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/main.cpp
 src/Server.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Server.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Server.h
 
-/home/kamil/SieciKomputerowe/scrabble-server/src/Board.cpp
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Board.cpp
 Board.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Board.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Board.h
 
-/home/kamil/SieciKomputerowe/scrabble-server/src/Board.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Board.h
 
-/home/kamil/SieciKomputerowe/scrabble-server/src/Game.cpp
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Game.cpp
 Game.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Game.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Game.h
+map
+-
+random
+-
 
-/home/kamil/SieciKomputerowe/scrabble-server/src/Game.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Game.h
 vector
 -
 Player.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Player.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Player.h
 Room.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Room.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Room.h
 Board.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Board.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Board.h
 
-/home/kamil/SieciKomputerowe/scrabble-server/src/Player.cpp
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Player.cpp
 Player.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Player.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Player.h
 
-/home/kamil/SieciKomputerowe/scrabble-server/src/Player.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Player.h
 cstdio
 -
 sys/socket.h
@@ -50,13 +54,13 @@ arpa/inet.h
 iostream
 -
 
-/home/kamil/SieciKomputerowe/scrabble-server/src/Room.cpp
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Room.cpp
 Room.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Room.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Room.h
 Server.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Server.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Server.h
 
-/home/kamil/SieciKomputerowe/scrabble-server/src/Room.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Room.h
 cstdio
 -
 string
@@ -66,23 +70,23 @@ cstring
 vector
 -
 Player.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Player.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Player.h
 
-/home/kamil/SieciKomputerowe/scrabble-server/src/Server.cpp
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Server.cpp
 sstream
 -
 Server.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Server.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Server.h
 
-/home/kamil/SieciKomputerowe/scrabble-server/src/Server.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Server.h
 vector
 -
 Player.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Player.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Player.h
 Room.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Room.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Room.h
 Game.h
-/home/kamil/SieciKomputerowe/scrabble-server/src/Game.h
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Game.h
 cstdio
 -
 sys/socket.h

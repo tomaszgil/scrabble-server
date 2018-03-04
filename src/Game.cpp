@@ -8,6 +8,12 @@ Game::Game(Room room, Board board) {
     setupLetters();
 }
 
+void Game::clear() {
+    room.players.clear();
+    board.clear();
+    setupLetters();
+}
+
 void Game::setupLetters() {
     struct cmp_char
     {

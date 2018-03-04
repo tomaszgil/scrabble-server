@@ -4,12 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/kamil/SieciKomputerowe/scrabble-server/main.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/main.cpp.o"
-  "/home/kamil/SieciKomputerowe/scrabble-server/src/Board.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Board.cpp.o"
-  "/home/kamil/SieciKomputerowe/scrabble-server/src/Game.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Game.cpp.o"
-  "/home/kamil/SieciKomputerowe/scrabble-server/src/Player.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Player.cpp.o"
-  "/home/kamil/SieciKomputerowe/scrabble-server/src/Room.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Room.cpp.o"
-  "/home/kamil/SieciKomputerowe/scrabble-server/src/Server.cpp" "/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Server.cpp.o"
+  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/main.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/main.cpp.o"
+  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Board.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Board.cpp.o"
+  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Game.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Game.cpp.o"
+  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Player.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Player.cpp.o"
+  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Room.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Room.cpp.o"
+  "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/src/Server.cpp" "/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/cmake-build-debug/CMakeFiles/server.dir/src/Server.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "GNU")
 

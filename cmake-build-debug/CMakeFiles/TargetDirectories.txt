@@ -1,3 +1,3 @@
-/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/kamil/SieciKomputerowe/scrabble-server/cmake-build-debug/CMakeFiles/server.dir
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/tomek/Dokumenty/Semestr 5/Sieci Komputerowe 2/scrabble-server/cmake-build-debug/CMakeFiles/server.dir

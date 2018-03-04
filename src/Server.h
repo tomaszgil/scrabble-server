@@ -17,6 +17,7 @@
 #include <cstring>
 #include <pthread.h>
 #include <thread>
+#include <unistd.h>
 
 class Server {
     char *server_address = "127.0.0.1";
@@ -47,7 +48,7 @@ public:
     static void receiveUserMove(int desc, Player &player);
     static void sendMoveToOtherPlayers(int desc, Player &player);
     static void swapLetters(int desc, Player &player);
-
+    static void quitRoom(int desc, Player &player);
 
     struct pthread_data {
         int client_desc;
