@@ -7,6 +7,7 @@ class Board {
 public:
     char board[15][15];
     Board();
+    void clear();
 
 };
 
