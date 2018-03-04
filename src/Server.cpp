@@ -194,7 +194,8 @@ void Server::sendAvaibleRooms(int desc) {
 }
 
 void Server::receiveSelectedRoom(int desc, Player &player) {
-    char buffor[50];
+    char buffor[15];
+    memset(buffor,'0',15);
     if(read(desc, buffor, sizeof(buffor)) <0){
         if(errno == EWOULDBLOCK){
             receiveSelectedRoom(desc, player);
@@ -209,32 +210,49 @@ void Server::receiveSelectedRoom(int desc, Player &player) {
                 break;
             }
         }
+        if(buffor[0]=='0'){
+            receiveSelectedRoom(desc, player);
+        }else{
+            std::cout<<buffor[0]<<std::endl;
 
+            for(int i=0; i< rooms.size(); i++){
+                if(rooms[i].getName()==buffor){
+                    if(rooms[i].players.size()==4){
+                        memset(buffor,'0',15);
+                        std::string x ="x";
+                        sendStringToClient(desc, x, 1);
+                        sendAvaibleRooms(desc);
+                        receiveSelectedRoom(desc, player);
+                        break;
+                    }
+                    else{
+                        if(rooms[i].players.empty() ) {
+                            player.setTurn(true);
+                        }
 
-        for(int i=0; i< rooms.size(); i++){
-            if(rooms[i].getName()==buffor){
-                if(rooms[i].players.empty() ) {
-                    player.setTurn(true);
-                }
+                        player.setRoom(rooms[i].getName());
+                        rooms[i].addPlayer(player);
+                        rooms[i].setFreeSlots(rooms[i].getFreeSlots()-1);
+                        std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom() << std::endl;
 
-                player.setRoom(rooms[i].getName());
-                rooms[i].addPlayer(player);
-                rooms[i].setFreeSlots(rooms[i].getFreeSlots()-1);
-                std::cout<< "Player: " << player.getUsername() << " entered room " << player.getRoom() << std::endl;
+                        for(int j=0; j<rooms[i].players.size(); j++){
+                            if(rooms[i].players[j].getUsername() == player.getUsername()){
+                                rooms[i].players[j].setRoom(rooms[i].getName());
+                                std::string code = "o";
+                                sendStringToClient(desc, code, 1);
+                            }
+                        }
 
-                for(int j=0; j<rooms[i].players.size(); j++){
-                    if(rooms[i].players[j].getUsername() == player.getUsername()){
-                        rooms[i].players[j].setRoom(rooms[i].getName());
+                        // Send info to other users in room
+                        for(int j=0; j<rooms[i].players.size(); j++){
+                            if(rooms[i].players[j].getUsername() != player.getUsername()){
+                                sendPlayersFromCurrentRoom(rooms[i].players[j].getSocket_desc(), rooms[i].players[j], 1);
+                                std::cout<<"Sending info about new player to: " << rooms[i].players[j].getUsername() <<std::endl;
+                            }
+                        }
                     }
                 }
 
-                // Send info to other users in room
-                for(int j=0; j<rooms[i].players.size(); j++){
-                    if(rooms[i].players[j].getUsername() != player.getUsername()){
-                        sendPlayersFromCurrentRoom(rooms[i].players[j].getSocket_desc(), rooms[i].players[j], 1);
-                        std::cout<<"Sending info about new player to: " << rooms[i].players[j].getUsername() <<std::endl;
-                    }
-                }
             }
         }
     }
@@ -289,7 +307,7 @@ void Server::sendBoard(int desc, Player &player, int code) {
     if(!sendStringToClient(desc,temp,length)){
         std::cout << "Couldn't send board" << std::endl;
     }else{
-        std::cout << "Board send" << std::endl;
+        std::cout << "Board send  " << desc <<std::endl;
     }
 }
 
@@ -359,6 +377,7 @@ void Server::sendPlayersFromCurrentRoom(int desc, Player &player, int x) {
     }
 
     const char *cstr = temp.c_str();
+    std::cout<<cstr<<std::endl;
 
     if(write(desc, cstr, strlen(cstr))<0){
         printf("%d", errno);
@@ -487,13 +506,11 @@ void Server::quitRoom(int desc, Player &player) {
             game = &(games[i]);
         }
     }
-    std::cout<<"Krok 1 " << std::endl;
     if (game -> room.players.size() == 1) {
         game -> clear();
         game -> room.setFreeSlots(game -> room.getFreeSlots() + 1);
     }
 
-    std::cout<<"Krok 2 " << std::endl;
 
     for (int i = 0; i < game -> room.players.size(); i++) {
         if (game->room.players.at(i).getUsername() == player.getUsername()) {
@@ -502,8 +519,6 @@ void Server::quitRoom(int desc, Player &player) {
             game -> room.setFreeSlots(game -> room.getFreeSlots() + 1);
         }
     }
-    std::cout<<"Krok 3 " << std::endl;
-
 
     int z = 0;
     for (; z< rooms.size(); z++){
@@ -512,32 +527,27 @@ void Server::quitRoom(int desc, Player &player) {
         }
     }
 
-    std::cout<<"Krok 4 " << std::endl;
-
     if (rooms[z].players.size() == 1) {
         rooms[z].players.clear();
         rooms[z].setFreeSlots(4);
     }
-    std::cout<<"Krok 5 " << std::endl;
-
 
     for(int i = 0; i<rooms[z].players.size(); i++) {
         if (rooms[z].players[i].getUsername() == player.getUsername()) {
-            std::cout<<"Krok 6 " << std::endl;
+            rooms[z].players[i].setTurn(false);
 
             auto start = rooms[z].players.begin();
-            std::cout<<"Krok 7 " << std::endl;
             rooms[z].players.erase(start + i);
-            std::cout<<"Krok 8 " << std::endl;
-
             rooms[z].setFreeSlots(rooms[z].getFreeSlots() + 1);
-            std::cout<<"Krok 9 " << std::endl;
-
         }
     }
 
     for(int i=0; i<rooms[z].players.size(); i++){
-        sendPlayersFromCurrentRoom(rooms[z].players[i].getSocket_desc(), rooms[z].players[i]);
+        std::cout<<rooms[z].players[i].getUsername()<<std::endl;
+        if(rooms[z].players[i].getUsername() != player.getUsername()){
+            sendPlayersFromCurrentRoom(rooms[z].players[i].getSocket_desc(), rooms[z].players[i], 1);
+            std::cout<<"WYKONALEM SIE" << std::endl;
+        }
     }
 
     std::cout << "Quitting room " << player.getRoom() << std::endl;
