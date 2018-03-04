@@ -47,8 +47,8 @@ public:
     static void sendPlayersFromCurrentRoom(int desc, Player &player, int code =0);
     static void receiveUserMove(int desc, Player &player);
     static void sendMoveToOtherPlayers(int desc, Player &player);
+    static void swapLetters(int desc, Player &player);
     static void quitRoom(int desc, Player &player);
-
 
     struct pthread_data {
         int client_desc;

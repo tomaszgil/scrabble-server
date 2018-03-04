@@ -14,6 +14,7 @@ public:
 
     Game(Room room, Board board);
     char takeLetter();
+    void insertLetter(char letter);
     void clear();
 
 private:
