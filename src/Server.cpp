@@ -124,7 +124,7 @@ void *Server::handleClient(void *data){
                 sendPlayersFromCurrentRoom(received_data.getSocket_desc(), received_data);
             } else if (buffer[0] == 'x') {
                 pthread_exit(NULL);
-            }else if(buffer[0] == '3'){
+            } else if (buffer[0] == '3' && buffer[1] == '_') {
                 swapLetters(received_data.getSocket_desc(), received_data);
             }
         }else{
